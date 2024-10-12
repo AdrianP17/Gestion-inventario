@@ -1,4 +1,4 @@
-import { IOrdenCompraRepository } from "../../../domain/repositories/IOrdenCompra";
+import { IOrdenCompraRepository } from "../../../domain/repositories/IOrdenCompraRepository";
 import { OrdenCompra } from "../../../domain/entities/OrdenCompra";
 
 export class MySQLOrdenCompraRepository implements IOrdenCompraRepository {

@@ -13,7 +13,9 @@
   "dependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.4",
+    "backend": "file:",
     "express": "^4.21.0",
+    "mysql2": "^3.11.3",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
