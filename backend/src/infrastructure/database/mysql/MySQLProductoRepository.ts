@@ -11,7 +11,6 @@ export class MySQLProductoRepository implements IProductoRepository {
           } catch (error: any) {
             throw new Error('Error al obtener los productos: ' + error.message);
           }
-        return []
     }    
     async obtenerPorId(id: number): Promise<Producto | null> {
         try {
@@ -24,6 +23,7 @@ export class MySQLProductoRepository implements IProductoRepository {
     }
     async crear(producto: Producto): Promise<void> {
         try {
+            console.log(producto);
             const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo } = producto;
             await db.execute(
                 'INSERT INTO Producto (nombre, categoriaId, precio, descripcion, marca, modelo, nivel_Maximo, nivel_Minimo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
@@ -37,8 +37,9 @@ export class MySQLProductoRepository implements IProductoRepository {
     async actualizar(producto: Producto): Promise<void> {
         try {
             const { id, nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo } = producto;
+            console.log(producto);
             await db.execute(
-                'UPDATE Producto SET nombre = ?, categoriaId = ?, precio = ?, descripcion = ?, marca = ?, modelo = ?, nivelMaximo = ?, nivelMinimo = ? WHERE id = ?',
+                'UPDATE Producto SET nombre = ?, categoriaId = ?, precio = ?, descripcion = ?, marca = ?, modelo = ?, nivel_Maximo = ?, nivel_Minimo = ? WHERE id = ?',
                 [nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo, id]
             );
         } catch (error: any) {
