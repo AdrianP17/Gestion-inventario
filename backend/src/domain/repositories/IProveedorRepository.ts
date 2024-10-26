@@ -5,5 +5,6 @@ export interface IProveedorRepository {
     crear(proveedor: Proveedor): Promise<void>;
     actualizar(proveedor: Proveedor): Promise<void>;
     eliminar(id: number): Promise<void>;
+    existeProveedorPorId(id: number): Promise<boolean>;
   }
   
