@@ -1,5 +1,6 @@
 import { IProveedorRepository } from "../../../domain/repositories/IProveedorRepository";
 import { Proveedor } from "../../../domain/entities/Proveedor";
+import { db } from "./connection";
 
 export class MySQLProveedorRepository implements IProveedorRepository {
     async obtenerTodos(): Promise<Proveedor[]> {
@@ -22,4 +23,8 @@ export class MySQLProveedorRepository implements IProveedorRepository {
         throw new Error("Method not implemented.");
     }
       
+    async existeProveedorPorId(id: number): Promise<boolean> {
+        const [results]: any = await db.query('SELECT 1 FROM proveedor WHERE id = ?', [id]);
+        return results.length > 0;
+    }
 }

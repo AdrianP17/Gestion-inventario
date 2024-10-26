@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import productoRouter from './interfaces/routes/productoRoutes';
+import ordenCompraRouter from './interfaces/routes/ordenCompraRoutes';
 
 import bodyParser from 'body-parser';
 const app = express();
@@ -9,6 +10,7 @@ app.use(bodyParser.json());
 
 // Registrar las rutas
 app.use('/api/productos', productoRouter);
+app.use('/api/ordenes', ordenCompraRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript with Express!');
