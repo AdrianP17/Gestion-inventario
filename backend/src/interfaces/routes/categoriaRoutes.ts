@@ -23,9 +23,11 @@ const categoriaController = new CategoriaController(
   eliminarCategoriaUseCase
 );
 
-categoriaRouter.post('/', (req, res) => categoriaController.crear(req, res));
+categoriaRouter.post('/', (req, res) => {
+  console.log(req.body); 
+  categoriaController.crear(req, res)});
 categoriaRouter.get('/', (req, res) => categoriaController.obtenerTodasCategorias(req, res));
-categoriaRouter.get('/:id', (req, res) => categoriaController.obtenerCategoriaPorId(req, res));
+categoriaRouter.get('/:id', (req, res) => categoriaController.obtenerPorId(req, res));
 categoriaRouter.put('/:id', (req, res) => categoriaController.actualizar(req, res));
 categoriaRouter.delete('/:id', (req, res) => categoriaController.eliminar(req, res));
 
