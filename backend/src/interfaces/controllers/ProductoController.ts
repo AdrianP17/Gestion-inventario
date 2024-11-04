@@ -83,7 +83,13 @@ export class ProductoController {
 
     async eliminar(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-
+        //Verificar que el producto exista
+        const producto = await this.obtenerProductoPorIdUseCase.execute(parseInt(id));
+        if (!producto) {
+            res.status(404).json({ message: 'Producto no encontrado' });
+            return;
+        }
+        
         try {
             await this.eliminarProductoUseCase.execute(parseInt(id));
             res.status(200).json({ message: 'Producto eliminado con exito' });

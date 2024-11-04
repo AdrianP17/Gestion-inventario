@@ -23,9 +23,11 @@ const proveedorController = new ProveedorController(
   eliminarProveedorUseCase
 );
 
-proveedorRouter.post('/', (req, res) => proveedorController.crear(req, res));
+proveedorRouter.post('/', (req, res) => {
+  console.log(req.body); 
+  proveedorController.crear(req, res)});
 proveedorRouter.get('/', (req, res) => proveedorController.obtenerTodosProveedores(req, res));
-proveedorRouter.get('/:id', (req, res) => proveedorController.obtenerProveedorPorId(req, res));
+proveedorRouter.get('/:id', (req, res) => proveedorController.obtenerPorId(req, res));
 proveedorRouter.put('/:id', (req, res) => proveedorController.actualizar(req, res));
 proveedorRouter.delete('/:id', (req, res) => proveedorController.eliminar(req, res));
 
