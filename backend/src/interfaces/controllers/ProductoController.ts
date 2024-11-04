@@ -4,6 +4,7 @@ import { ObtenerTodosProductosUseCase } from '../../application/use-cases/produc
 import { ActualizarProductoUseCase } from '../../application/use-cases/producto/ActualizarProductoUseCase'
 import { EliminarProductoUseCase } from '../../application/use-cases/producto/EliminarProductoUseCase'
 import { ObtenerProductoPorIdUseCase } from '../../application/use-cases/producto/ObtenerProductoPorIdUseCase'
+import { ObtenerListaProductosUseCase } from '../../application/use-cases/producto/ObtenerListaProductosUseCase'
 
 export class ProductoController {
 
@@ -12,11 +13,13 @@ export class ProductoController {
         private obtenerTodosProductosUseCase: ObtenerTodosProductosUseCase,
         private obtenerProductoPorIdUseCase: ObtenerProductoPorIdUseCase,
         private actualizarProductoUseCase: ActualizarProductoUseCase,
-        private eliminarProductoUseCase: EliminarProductoUseCase
+        private eliminarProductoUseCase: EliminarProductoUseCase,
+        private obtenerListaProductosUseCase: ObtenerListaProductosUseCase
     ) {}
 
     async crear(req: Request, res: Response): Promise<void> {
         const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo } = req.body;
+        console.log(nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo);
         try {
             await this.crearProductoUseCase.execute({
                 id: 0,
@@ -34,6 +37,15 @@ export class ProductoController {
             res.status(500).json({ message: 'Error al crear el producto: ' + error.message });
         }
     }
+    async obtenerlista(req: Request, res: Response): Promise<void> {
+        try {
+            const productos = await this.obtenerListaProductosUseCase.execute();
+            res.json(productos);
+        } catch (error: any) {
+            res.status(500).json({ message: 'Error al obtener los productos: ' + error.message });
+        }
+    }
+
     async obtenerTodosProductos(req: Request, res: Response): Promise<void> {
         try {
             const productos = await this.obtenerTodosProductosUseCase.execute();
