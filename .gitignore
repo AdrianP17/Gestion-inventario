@@ -1,5 +1,1 @@
 node_modules/
-
-backend/src/infrastructure/database/mysql/connection.ts
-backend/src/index.ts
-backend\src\interfaces\controllers\ProductoController.ts
