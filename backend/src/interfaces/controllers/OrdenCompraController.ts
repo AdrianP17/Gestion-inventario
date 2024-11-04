@@ -23,8 +23,15 @@ export class OrdenCompraController {
   async crear(req: Request, res: Response): Promise<void> {
     try {
       const { proveedorId, fechaCompra, estado, totalCompra } = req.body;
-      const ordenCompra = new OrdenCompra(0, proveedorId, fechaCompra, estado, totalCompra);
-      await this.crearOrdenCompraUseCase.execute(ordenCompra);
+       // Valida que los campos sean correctos antes de enviarlos al caso de uso.
+       const ordenCompraData = {
+        proveedorId,
+        fechaCompra: new Date(fechaCompra), // Asegúrate de convertir la fecha al tipo Date si es necesario.
+        estado,
+        totalCompra,
+    };
+
+      await this.crearOrdenCompraUseCase.execute(ordenCompraData);
       res.status(201).send({ mensaje: 'Orden de compra creada exitosamente' });
     } catch (error: any) {
       res.status(400).send({ error: error.message });
@@ -40,10 +47,10 @@ export class OrdenCompraController {
     try {
         await this.actualizarOrdenCompraUseCase.execute({
             id: parseInt(id),
-            proveedorID: proveedorId,
+            proveedorId,
             fechaCompra,
             estado,
-            TotalCompra: totalCompra    
+            totalCompra    
         });
 
         res.status(200).json({ message: 'Orden de compra actualizada con éxito' });
@@ -65,7 +72,7 @@ export class OrdenCompraController {
   async obtenerPorId(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const ordenCompra = await this.obtenerOrdenCompraPorId.execute(parseInt(id));
+      const ordenCompra = await this.obtenerOrdenCompraPorId.execute(Number(id));
       res.json(ordenCompra);
     } catch (error: any) {
       res.status(400).send({ error: error.message });

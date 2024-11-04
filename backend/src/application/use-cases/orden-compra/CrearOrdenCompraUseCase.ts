@@ -4,8 +4,8 @@ import { OrdenCompra } from '../../../domain/entities/OrdenCompra';
 export class CrearOrdenCompraUseCase {
   constructor(private ordenCompraRepository: IOrdenCompraRepository) {}
 
-  async execute(ordenCompra: OrdenCompra): Promise<void> {
+  async execute(data: { proveedorId: number; fechaCompra: Date; estado: string; totalCompra: number }): Promise<void> {
     // TODO: Implementar validaciones, por ejemplo, que el proveedor exista antes de crear la orden de compra
-    await this.ordenCompraRepository.crear(ordenCompra);
+    await this.ordenCompraRepository.crear(data);
   }
 }
