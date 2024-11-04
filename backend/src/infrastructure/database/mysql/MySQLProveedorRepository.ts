@@ -7,6 +7,21 @@ export class MySQLProveedorRepository implements IProveedorRepository {
         throw new Error("Method not implemented.");
     }
 
+    async obtenerListaProveedores(): Promise<{ id: number; nombre: string; }[]> {
+        try {
+            const [proveedores] = await db.query(`
+                SELECT 
+                    ID AS id,
+                    Nombre AS nombre
+                FROM 
+                    Proveedor;
+            `);
+            return proveedores as { id: number; nombre: string; }[];
+        } catch (error : any) {
+            throw new Error('Error al obtener la lista de proveedores: ' + error.message);
+        }
+    }
+
     async obtenerPorId(id: number): Promise<Proveedor | null> {
         throw new Error("Method not implemented.");
     }
