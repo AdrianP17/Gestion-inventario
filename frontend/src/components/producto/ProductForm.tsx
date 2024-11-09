@@ -34,7 +34,7 @@ export default function ProductForm() {
         }
       }, [params.id])
       async function fetchProducto() {
-        const response = await api.get(`/productos/${params.id}`)
+        const response = await api.get(`/productos/info/${params.id}`)
         setFormData({
           nombre: response.data.Nombre,
           categoria: String(response.data.CategoriaId),
