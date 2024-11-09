@@ -11,7 +11,7 @@ function ProductoPage() {
   const [data, setData] = useState<any>(null)
 
   async function fetchProducto() {
-    const response = await api.get(`/productos/${params.id}`)
+    const response = await api.get(`/productos/info/${params.id}`)
     return response.data
   }
 
