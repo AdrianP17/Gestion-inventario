@@ -1,14 +1,24 @@
 import express, { Request, Response } from 'express';
 import productoRouter from './interfaces/routes/productoRoutes';
+import ordenCompraRouter from './interfaces/routes/ordenCompraRoutes';
+import proveedorRouter from './interfaces/routes/proveedorRoutes';
 
 import bodyParser from 'body-parser';
+import categoriaRouter from './interfaces/routes/categoriaRoutes';
+import proveedorRouter from './interfaces/routes/proveedorRoutes';
 const app = express();
-const port = 3000;
+const port = 3001;
 // Middleware para parsear JSON
 app.use(bodyParser.json());
 
 // Registrar las rutas
 app.use('/api/productos', productoRouter);
+app.use('/api/ordenes', ordenCompraRouter);
+app.use('/api/proveedores', proveedorRouter);
+
+app.use('/api/categorias', categoriaRouter);
+
+app.use('/api/proveedores', proveedorRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript with Express!');

@@ -8,6 +8,7 @@ export class Producto {
         public marca: string,
         public modelo: string,
         public nivelMaximo: number,
-        public nivelMinimo: number
+        public nivelMinimo: number,
+        public NombreCategoria?: string
     ) {}
 }
