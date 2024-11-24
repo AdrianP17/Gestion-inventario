@@ -65,4 +65,19 @@ export class MySQLProductoRepository implements IProductoRepository {
         }
         return []
     }
+        async actualizarStock(productoID: number, cantidad: number): Promise<void> {
+        try {
+            await db.execute('UPDATE Producto SET stock_Actual = ? WHERE id = ?', [cantidad, productoID]);
+        } catch (error: any) {
+            throw new Error('Error al actualizar el stock del producto: ' + error.message);
+        }
+    }
+
+    async cambiarEstado(productoID: number, estado: string): Promise<void> {
+        try {
+            await db.execute('UPDATE Producto SET estado = ? WHERE id = ?', [estado, productoID]);
+        } catch (error: any) {
+            throw new Error('Error al cambiar el estado del producto: ' + error.message);
+        }
+    }
 }

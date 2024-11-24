@@ -8,6 +8,9 @@ export class Producto {
         public marca: string,
         public modelo: string,
         public nivelMaximo: number,
-        public nivelMinimo: number
+        public nivelMinimo: number,
+        public stockActual: number = 0, // Default 0
+        public sku: string | null, // Puede ser null
+        public estado: string = 'Activo' // Default 'Activo'
     ) {}
 }

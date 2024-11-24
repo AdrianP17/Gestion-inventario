@@ -4,6 +4,8 @@ import { ObtenerTodosProductosUseCase } from '../../application/use-cases/produc
 import { ActualizarProductoUseCase } from '../../application/use-cases/producto/ActualizarProductoUseCase'
 import { EliminarProductoUseCase } from '../../application/use-cases/producto/EliminarProductoUseCase'
 import { ObtenerProductoPorIdUseCase } from '../../application/use-cases/producto/ObtenerProductoPorIdUseCase'
+import { ActualizarStockProductoUseCase } from '../../application/use-cases/producto/ActualizarStockProductoUseCase';
+import { CambiarEstadoProductoUseCase } from '../../application/use-cases/producto/CambiarEstadoProductoUseCase';
 
 export class ProductoController {
 
@@ -12,11 +14,14 @@ export class ProductoController {
         private obtenerTodosProductosUseCase: ObtenerTodosProductosUseCase,
         private obtenerProductoPorIdUseCase: ObtenerProductoPorIdUseCase,
         private actualizarProductoUseCase: ActualizarProductoUseCase,
-        private eliminarProductoUseCase: EliminarProductoUseCase
+        private eliminarProductoUseCase: EliminarProductoUseCase,
+        // Agregar los nuevos casos de uso
+        private actualizarStockProductoUseCase: ActualizarStockProductoUseCase,
+        private cambiarEstadoProductoUseCase: CambiarEstadoProductoUseCase
     ) {}
 
     async crear(req: Request, res: Response): Promise<void> {
-        const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo } = req.body;
+        const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo, stockActual, sku, estado } = req.body;
         try {
             await this.crearProductoUseCase.execute({
                 id: 0,
@@ -27,7 +32,10 @@ export class ProductoController {
                 marca,
                 modelo,
                 nivelMaximo,
-                nivelMinimo
+                nivelMinimo,
+                stockActual,
+                sku,
+                estado
             });
             res.status(201).json({ message: 'Producto creado con éxito' });
         } catch (error: any) {
@@ -62,7 +70,7 @@ export class ProductoController {
             return;
         }
 
-        const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo } = req.body;
+        const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo, stockActual, sku, estado } = req.body;
         try {
             await this.actualizarProductoUseCase.execute({
                 id: parseInt(id),
@@ -73,7 +81,10 @@ export class ProductoController {
                 marca,
                 modelo,
                 nivelMaximo,
-                nivelMinimo
+                nivelMinimo,
+                stockActual,
+                sku,
+                estado
             });
             res.status(200).json({ message: 'Producto actualizado con exito' });
         } catch (error: any) {
@@ -89,6 +100,29 @@ export class ProductoController {
             res.status(200).json({ message: 'Producto eliminado con exito' });
         } catch (error: any) {
             res.status(500).json({ message: 'Error al eliminar el producto: ' + error.message });
+        }
+    }
+        // Método para actualizar el stock del producto
+    async actualizarStock(req: Request, res: Response): Promise<void> {
+        const { id } = req.params;
+        const { cantidad } = req.body;
+        try {
+            await this.actualizarStockProductoUseCase.execute(parseInt(id), cantidad);
+            res.status(200).json({ message: 'Stock del producto actualizado con éxito' });
+        } catch (error: any) {
+            res.status(500).json({ message: 'Error al actualizar el stock del producto: ' + error.message });
+        }
+    }
+
+    // Método para cambiar el estado del producto
+    async cambiarEstado(req: Request, res: Response): Promise<void> {
+        const { id } = req.params;
+        const { estado } = req.body;
+        try {
+            await this.cambiarEstadoProductoUseCase.execute(parseInt(id), estado);
+            res.status(200).json({ message: 'Estado del producto cambiado con éxito' });
+        } catch (error: any) {
+            res.status(500).json({ message: 'Error al cambiar el estado del producto: ' + error.message });
         }
     }
 }
