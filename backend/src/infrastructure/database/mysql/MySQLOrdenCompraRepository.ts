@@ -1,6 +1,7 @@
 import { IOrdenCompraRepository } from "../../../domain/repositories/IOrdenCompraRepository";
 import { OrdenCompra } from "../../../domain/entities/OrdenCompra";
 import { db } from "./connection";
+import { DetalleCompra } from "../../../domain/entities/DetalleCompra";
 
 export class MySQLOrdenCompraRepository implements IOrdenCompraRepository {
     async obtenerTodas(): Promise<OrdenCompra[]> {
@@ -55,17 +56,49 @@ export class MySQLOrdenCompraRepository implements IOrdenCompraRepository {
             throw new Error('Error al obtener la orden de compra por ID: ' + error.message);
         }
     }
-    async crear(data: { proveedorId: number; fechaCompra: Date; estado: string; totalCompra: number }): Promise<void> {
+    async crear(data: { proveedorId: number; fechaCompra: Date; estado: string; detalles: DetalleCompra[] }): Promise<void> {
+        const connection = await db.getConnection();
+        const queryStart = 'START TRANSACTION';
+        const queryEnd = 'COMMIT';
         try {
-            console.log(data);
-            const { proveedorId, fechaCompra, estado, totalCompra } = data;
-            await db.execute(
-                'INSERT INTO orden_compra (proveedorID, Fecha_Compra, estado, Total_Compra) VALUES (?, ?, ?, ?)',
-                [proveedorId, fechaCompra, estado, totalCompra]
-            )
-            
+            await connection.query(queryStart);
+
+            // Insertar la orden de compra
+            const [result]: any = await connection.query(`
+                INSERT INTO orden_compra (ProveedorID, Fecha_Compra, Estado, Total_Compra)
+                VALUES (?, ?, ?, ?)`,
+                [data.proveedorId, data.fechaCompra, data.estado, 0]
+            );
+
+            const ordenCompraId = result.insertId;
+
+            // Insertar los detalles de la orden de compra
+            let totalCompra = 0;
+            for (const detalle of data.detalles) {
+                const subtotal = detalle.cantidad * detalle.precioUnitario;
+                totalCompra += subtotal;
+
+                await connection.query(`
+                    INSERT INTO detalle_compra (Orden_CompraID, ProductoID, Cantidad, Precio_Unitario, Subtotal)
+                    VALUES (?, ?, ?, ?, ?)`,
+                    [ordenCompraId, detalle.ProductoId, detalle.cantidad, detalle.precioUnitario, subtotal]
+                );
+            }
+
+            // Actualizar el total de la orden de compra
+            await connection.query(`
+                UPDATE orden_compra
+                SET Total_Compra = ?
+                WHERE ID = ?`,
+                [totalCompra, ordenCompraId]
+            );
+
+            await connection.query(queryEnd);
         } catch (error: any) {
-            throw new Error('Error al crear el producto: ' + error.message);
+            await connection.query('ROLLBACK');
+            throw new Error('Error al crear la orden de compra y detalles: ' + error.message);
+        } finally {
+            connection.release();
         }
     }
     async actualizar(data: { id: number; proveedorId: number; fechaCompra: Date; estado: string; totalCompra: number }): Promise<void> {
