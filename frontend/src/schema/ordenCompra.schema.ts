@@ -15,3 +15,6 @@ export const OrdenCompraSchema = z.object({
     detalles: z.array(detallePedidoSchema),
     totalCompra: z.number().positive(),
 })
+
+export type OrdenCompraFormulario = z.infer<typeof OrdenCompraSchema>;
+export type DetallePedido = z.infer<typeof detallePedidoSchema>;
