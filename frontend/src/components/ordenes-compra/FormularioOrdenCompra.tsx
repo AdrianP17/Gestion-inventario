@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect } from "react";
+import { OrdenCompraFormulario, DetallePedido } from "@/schema/ordenCompra.schema";
 
 interface FormularioOrdenCompraProps {
     proveedores: { id: number; nombre: string }[];
@@ -16,25 +17,12 @@ interface FormularioOrdenCompraProps {
     onSuccess: () => void;
 }
 
-interface DetallePedido {
-    productoId: number | null;
-    nombreProducto: string;
-    cantidad: number;
-    precioUnitario: number;
-    subtotal: number;
-}
-
-interface OrdenCompraFormulario {
-    proveedorId: number | null;
-    detalles: DetallePedido[];
-    totalCompra: number;
-}
 
 export default function FormularioOrdenCompra({ proveedores, productos, onSuccess }: FormularioOrdenCompraProps) {
     const { control, register, handleSubmit, watch, setValue, getValues } = useForm<OrdenCompraFormulario>({
         resolver: zodResolver(OrdenCompraSchema),
         defaultValues: {
-            proveedorId: 0,
+            proveedorID: 0,
             detalles: [],
             totalCompra: 0,
         },
@@ -92,7 +80,7 @@ export default function FormularioOrdenCompra({ proveedores, productos, onSucces
                     <div className="mb-4">
                         <Label htmlFor="proveedor">Proveedor</Label>
                         <Controller
-                            name="proveedorId"
+                            name="proveedorID"
                             control={control}
                             render={({ field }) => (
                                 <select
@@ -179,7 +167,7 @@ export default function FormularioOrdenCompra({ proveedores, productos, onSucces
                     <Button
                         type="button"
                         onClick={() =>
-                            append({ productoId: null, nombreProducto: "", cantidad: 1, precioUnitario: 0, subtotal: 0 })
+                            append({ productoId: 0, nombreProducto: "", cantidad: 1, precioUnitario: 0, subtotal: 0 })
                         }
                     >
                         Agregar Detalle
