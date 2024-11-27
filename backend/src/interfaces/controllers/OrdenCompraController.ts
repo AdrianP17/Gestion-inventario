@@ -22,13 +22,13 @@ export class OrdenCompraController {
 
   async crear(req: Request, res: Response): Promise<void> {
     try {
-      const { proveedorId, fechaCompra, estado, totalCompra } = req.body;
+      const { proveedorId, fechaCompra, estado, detalles } = req.body;
        // Valida que los campos sean correctos antes de enviarlos al caso de uso.
        const ordenCompraData = {
         proveedorId,
         fechaCompra: new Date(fechaCompra), // Asegúrate de convertir la fecha al tipo Date si es necesario.
         estado,
-        totalCompra,
+        detalles
     };
 
       await this.crearOrdenCompraUseCase.execute(ordenCompraData);

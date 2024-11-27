@@ -81,7 +81,7 @@ export class MySQLOrdenCompraRepository implements IOrdenCompraRepository {
                 await connection.query(`
                     INSERT INTO detalle_compra (Orden_CompraID, ProductoID, Cantidad, Precio_Unitario, Subtotal)
                     VALUES (?, ?, ?, ?, ?)`,
-                    [ordenCompraId, detalle.ProductoId, detalle.cantidad, detalle.precioUnitario, subtotal]
+                    [ordenCompraId, detalle.productoId, detalle.cantidad, detalle.precioUnitario, subtotal]
                 );
             }
 
