@@ -6,6 +6,7 @@ import recepcionRoutes from './interfaces/routes/recepcionCompraRoutes';
 import bodyParser from 'body-parser';
 import categoriaRouter from './interfaces/routes/categoriaRoutes';
 import salidaInventarioRouter from './interfaces/routes/salidaInventarioRoutes';
+import kardexRouter from './interfaces/routes/kardexRoutes';
 const app = express();
 const port = 3001;
 // Middleware para parsear JSON
@@ -17,6 +18,7 @@ app.use('/api/ordenes', ordenCompraRouter);
 app.use('/api/proveedores', proveedorRouter);
 app.use('/api/recepciones', recepcionRoutes);
 app.use('/api/categorias', categoriaRouter);
+app.use('/api/kardex', kardexRouter);
 app.use('/api/salidas', salidaInventarioRouter);
 
 app.get('/', (req: Request, res: Response) => {
