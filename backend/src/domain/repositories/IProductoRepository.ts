@@ -7,5 +7,8 @@ export interface IProductoRepository {
     crear(producto: Producto): Promise<void>;
     actualizar(producto: Producto): Promise<void>;
     eliminar(id: number): Promise<void>;
+    obtenerInventario(): Promise<Producto[]>;
     obtenerPorCategoria(categoriaId: number): Promise<Producto[]>;
+    obtenerProductosDebajoDelNivelMinimo(): Promise<Producto[]>;
+    obtenerProductosArribaDelNivelMaximo(): Promise<Producto[]>;
 }
