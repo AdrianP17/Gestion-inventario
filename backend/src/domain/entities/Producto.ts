@@ -9,6 +9,9 @@ export class Producto {
         public modelo: string,
         public nivelMaximo: number,
         public nivelMinimo: number,
-        public NombreCategoria?: string
+        public NombreCategoria?: string,
+        public Stock_Actual?: number,
+        public SKU?: string,
+        public Estado?: string
     ) {}
 }

@@ -83,7 +83,7 @@ body {
 }
 
 .subtitle{
-  @apply text-lg font-semibold mb-2;
+  @apply text-lg font-light mb-2;
 }
 
 .container-custom {

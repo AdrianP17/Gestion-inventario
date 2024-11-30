@@ -23,10 +23,10 @@ const salidaInventarioController = new SalidaInventarioController(
   eliminarSalidaInventarioUseCase
 );
 
-salidaInventarioRouter.post('/', (req, res) => salidaInventarioController.crear(req, res));
-salidaInventarioRouter.get('/', (req, res) => salidaInventarioController.obtenerTodasSalidasInventario(req, res));
-salidaInventarioRouter.get('/:id', (req, res) => salidaInventarioController.obtenerSalidaInventarioPorId(req, res));
-salidaInventarioRouter.put('/:id', (req, res) => salidaInventarioController.actualizar(req, res));
-salidaInventarioRouter.delete('/:id', (req, res) => salidaInventarioController.eliminar(req, res));
+salidaInventarioRouter.post('/', (req, res) => salidaInventarioController.crearSalida(req, res));
+salidaInventarioRouter.get('/', (req, res) => salidaInventarioController.obtenerTodasSalidas(req, res));
+salidaInventarioRouter.get('/:id', (req, res) => salidaInventarioController.obtenerSalidaPorId(req, res));
+salidaInventarioRouter.put('/:id', (req, res) => salidaInventarioController.actualizarSalida(req, res));
+salidaInventarioRouter.delete('/:id', (req, res) => salidaInventarioController.eliminarSalida(req, res));
 
 export default salidaInventarioRouter;

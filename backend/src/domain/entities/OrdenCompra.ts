@@ -1,7 +1,7 @@
 import { DetalleCompra } from './DetalleCompra';
 export class OrdenCompra {
     constructor(
-        public id: number,
+        public id: number, //1
         public proveedorID: number,
         public nombreProveedor: string,
         public fechaCompra: Date,

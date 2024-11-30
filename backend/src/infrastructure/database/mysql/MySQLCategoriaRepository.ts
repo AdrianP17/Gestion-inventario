@@ -5,7 +5,7 @@ import { db } from './connection'; // Importar la conexión de la base de datos
 export class MySQLCategoriaRepository  implements ICategoriaRepository {
     async obtenerTodas(): Promise<Categoria[]> {
         try {
-            const [results] = await db.query('SELECT * FROM Categoria');
+            const [results] = await db.query('SELECT ID, Nombre FROM Categoria');
             return results as Categoria[];
         } catch (error: any) {
             throw new Error('Error al obtener todas las categorías: ' + error.message);
