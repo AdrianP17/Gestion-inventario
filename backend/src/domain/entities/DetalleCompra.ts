@@ -3,7 +3,7 @@ export class DetalleCompra {
       public nombreProducto: string,
       public cantidad: number,
       public precioUnitario: number,
-      public subtotal: number
+      public subtotal: number,
+      public productoId?: number
     ) {}
   }
-  

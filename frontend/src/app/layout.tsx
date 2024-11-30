@@ -20,7 +20,7 @@ export default function RootLayout({
       >
         <main className="flex p-4 gap-6 min-h-screen">
         <Sidebar />
-        <div className="border border-red-400 w-full">
+        <div className=" w-full">
         {children}
         </div>
         </main>

@@ -5,7 +5,9 @@ import { ActualizarProductoUseCase } from '../../application/use-cases/producto/
 import { EliminarProductoUseCase } from '../../application/use-cases/producto/EliminarProductoUseCase'
 import { ObtenerProductoPorIdUseCase } from '../../application/use-cases/producto/ObtenerProductoPorIdUseCase'
 import { ObtenerListaProductosUseCase } from '../../application/use-cases/producto/ObtenerListaProductosUseCase'
-
+import { ObtenerInventarioProductosUseCase } from '../../application/use-cases/producto/ObtenerInventarioProductosUseCase'
+import { ObtenerProductosMaximosUseCase } from '../../application/use-cases/producto/ObtenerProductosMaximos'
+import { ObtenerProductosMinimosUseCase } from '../../application/use-cases/producto/ObtenerProductosMinimosUseCase'
 export class ProductoController {
 
     constructor(
@@ -14,7 +16,10 @@ export class ProductoController {
         private obtenerProductoPorIdUseCase: ObtenerProductoPorIdUseCase,
         private actualizarProductoUseCase: ActualizarProductoUseCase,
         private eliminarProductoUseCase: EliminarProductoUseCase,
-        private obtenerListaProductosUseCase: ObtenerListaProductosUseCase
+        private obtenerListaProductosUseCase: ObtenerListaProductosUseCase,
+        private obtenerInventarioProductosUseCase: ObtenerInventarioProductosUseCase,
+        private obtenerProductosMaximosUseCase: ObtenerProductosMaximosUseCase,
+        private obtenerProductosMinimosUseCase: ObtenerProductosMinimosUseCase
     ) {}
 
     async crear(req: Request, res: Response): Promise<void> {
@@ -109,4 +114,31 @@ export class ProductoController {
             res.status(500).json({ message: 'Error al eliminar el producto: ' + error.message });
         }
     }
+
+    async obtenerInventario(req: Request, res: Response): Promise<void> {
+        try {
+            const inventario = await this.obtenerInventarioProductosUseCase.execute();
+            res.json(inventario);
+        } catch (error: any) {
+            res.status(500).json({ message: 'Error al obtener el inventario de productos: ' + error.message });
+        }
+    }
+
+    async obtenerMinimos(req: Request, res: Response): Promise<void> {
+        try {
+            const productosMinimos = await this.obtenerProductosMinimosUseCase.execute();
+            res.json(productosMinimos);
+        } catch (error: any) {
+            res.status(500).json({ message: 'Error al obtener los productos minimos: ' + error.message });
+        }
+    }
+    async obtenerMaximos(req: Request, res: Response): Promise<void> {
+        try {
+            const productosMaximos = await this.obtenerProductosMaximosUseCase.execute();
+            res.json(productosMaximos);
+        } catch (error: any) {
+            res.status(500).json({ message: 'Error al obtener los productos minimos: ' + error.message });
+        }
+    }
+
 }

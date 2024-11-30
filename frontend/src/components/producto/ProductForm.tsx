@@ -11,10 +11,12 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import api from "@/lib/api";
 import { Producto } from "@/types/producto";
 import { set } from "react-hook-form";
+import useCategorias from "@/hooks/useCategorias";
 
  
 
 export default function ProductForm() {
+    const categorias = useCategorias()
     const router = useRouter()
     const params = useParams<{ id: string }>()
     const [formData, setFormData] = useState({
@@ -29,6 +31,7 @@ export default function ProductForm() {
       })
 
       useEffect(() => {
+        
         if (params.id) {
           fetchProducto()
         }
@@ -100,10 +103,16 @@ export default function ProductForm() {
               <Label htmlFor="categoria">Categoría</Label>
               <Select name="categoria" value={formData.categoria} onValueChange={handleSelectChange} required>
                 <SelectTrigger>
-                    {formData.categoria ? <SelectValue  /> : <SelectValue placeholder="Selecciona una categoría" />}
+                    {formData.categoria ? <SelectValue /> : <SelectValue placeholder="Selecciona una categoría" />}
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1">Categoria 1</SelectItem>
+                  {
+                    categorias.map((categoria) => (
+                      <SelectItem key={categoria.ID} value={String(categoria.ID)}>
+                        {categoria.Nombre}
+                      </SelectItem>
+                    ))
+                  }
                 </SelectContent>
               </Select>
             </div>

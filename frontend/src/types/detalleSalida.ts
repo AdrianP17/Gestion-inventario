@@ -1,8 +1,7 @@
 export interface DetalleSalida {
-    id: number;
-    salidaInventarioId: number;
     productoId: number;
-    cantidad: number;
+    nombreProducto: string;
+    Cantidad: number;
     precioUnitario: number;
-    subtotal: number;
+    Subtotal: number;
 }

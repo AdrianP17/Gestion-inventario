@@ -8,5 +8,6 @@ export interface Producto {
     Modelo?: string;
     Nivel_Maximo: number;
     Nivel_Minimo: number;
+    Stock_Actual?: number;
     NombreCategoria?: string;
 }
