@@ -55,14 +55,14 @@ export class MySQLSalidaInventarioRepository implements ISalidaInventarioReposit
         try {
           const query = `
             SELECT 
-              ds.ID,
-              ds.Salida_InventarioID AS salidaInventarioId,
               ds.ProductoID AS productoId,
+              p.Nombre AS nombreProducto,
               ds.Cantidad,
               ds.Precio_Unitario AS precioUnitario,
               ds.Subtotal
             FROM 
               detalle_salida ds
+              INNER JOIN producto p ON ds.ProductoID = p.ID
             WHERE 
               ds.Salida_InventarioID = ?
           `;

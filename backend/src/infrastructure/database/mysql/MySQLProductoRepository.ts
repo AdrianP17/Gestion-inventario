@@ -81,4 +81,50 @@ export class MySQLProductoRepository implements IProductoRepository {
         }
         return []
     }
+
+    async obtenerInventario(): Promise<Producto[]> {
+        try {
+            const [results] = await db.query(`
+                SELECT 
+                    producto.*,
+                    Categoria.Nombre AS NombreCategoria
+                FROM 
+                    Producto
+                JOIN 
+                    Categoria ON Producto.CategoriaID = Categoria.ID
+            `);
+            return results as Producto[];
+        } catch (error : any) {
+            throw new Error('Error al obtener el inventario de productos: ' + error.message);
+            
+        }
+    }
+
+    async obtenerProductosDebajoDelNivelMinimo(): Promise<Producto[]> {
+        try {
+            const [results] = await db.query(`
+                select ID, Nombre, Stock_Actual from producto
+where Stock_Actual < Nivel_Minimo;
+            `);
+            return results as Producto[];
+
+        } catch (error: any) {
+            throw new Error('Error al obtener el inventario de productos: ' + error.message);
+            
+        }
+    }
+
+    async obtenerProductosArribaDelNivelMaximo(): Promise<Producto[]> {
+        try {
+            const [results] = await db.query(`
+                select ID, Nombre, Stock_Actual from producto
+where Stock_Actual > Nivel_Maximo;
+            `);
+            return results as Producto[];
+
+        } catch (error: any) {
+            throw new Error('Error al obtener el inventario de productos: ' + error.message);
+            
+        }
+    }
 }
