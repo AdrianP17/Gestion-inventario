@@ -40,7 +40,7 @@ function Kardex() {
       <h2 className="title">Registro de Movimientos</h2>
       <div className="max-w-screen-lg mb-6">
 
-        {loading ? <p>Cargando productos...</p> : <SimpleTable columns={columnsKardex} data={kardex} />}
+        {loading ? <p>Cargando productos...</p> : <SimpleTable enableSearch={false} columns={columnsKardex} data={kardex} />}
       </div>
     </div>
   </main>

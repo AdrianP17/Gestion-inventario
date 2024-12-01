@@ -4,15 +4,15 @@ import { usePathname } from "next/navigation"
 function MenuItem({ icon, name, href }: { icon: JSX.Element, name: string, href?: string }) {
     const currentPath = usePathname()
 
-    const baseClasses = "w-full p-3 rounded-2xl flex gap-3 items-center transition-colors duration-300 hover:bg-gray-200/20 text-text-100"
+    const baseClasses = "w-full p-3 rounded-2xl flex gap-3 items-center transition-colors duration-300 hover:bg-gray-100/10 text-gray-500"
     const path = `/${href}`
-    const isActive = name === "inicio" ? currentPath === path : currentPath.startsWith(path);
+    const isActive = name === "inventario" ? currentPath === path : currentPath.startsWith(path);
     return (
-        <Link href={`/${href}`} className={`${baseClasses} ${isActive ? "bg-white text-text-200 " : ""}`}>
-            <div className={`p-2 grid place-content-center  rounded-2xl  ${isActive ? "bg-primary text-white " : "text-primary bg-white"}`}>
+        <Link href={`/${href}`} className={`${baseClasses} ${isActive ? "text-primary" : ""}`}>
+            <div className={`p-2 grid place-content-center  rounded-2xl  ${isActive ? "text-primary" : "text-gray-500"}`}>
                 {icon}
             </div>
-            <p className=" capitalize font-semibold">{name}</p>
+            <p className={`${isActive ? "text-primary" : "text-gray-500"} capitalize font-medium`}>{name}</p>
         </Link>
     )
 }
