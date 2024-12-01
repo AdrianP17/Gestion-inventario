@@ -37,14 +37,14 @@ export default function ProductForm() {
       async function fetchProducto() {
         const response = await api.get(`/productos/info/${params.id}`)
         setFormData({
-          nombre: response.data.Nombre,
-          categoria: String(response.data.CategoriaId),
-          precio: String(response.data.Precio),
-          descripcion: response.data.Descripcion,
-          marca: response.data.Marca,
-          modelo: response.data.Modelo,
-          nivelMinimo: String(response.data.Nivel_Minimo),
-          nivelMaximo: String(response.data.Nivel_Maximo)
+          nombre: response.data.nombre,
+          categoria: String(response.data.categoriaid),
+          precio: String(response.data.precio),
+          descripcion: response.data.descripcion,
+          marca: response.data.marca,
+          modelo: response.data.modelo,
+          nivelMinimo: String(response.data.nivel_minimo),
+          nivelMaximo: String(response.data.nivel_maximo)
         })
       }
 
@@ -106,8 +106,8 @@ export default function ProductForm() {
                 <SelectContent>
                   {
                     categorias.map((categoria) => (
-                      <SelectItem key={categoria.ID} value={String(categoria.ID)}>
-                        {categoria.Nombre}
+                      <SelectItem key={categoria.id} value={String(categoria.id)}>
+                        {categoria.nombre}
                       </SelectItem>
                     ))
                   }
