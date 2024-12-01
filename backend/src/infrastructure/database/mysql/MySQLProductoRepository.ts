@@ -6,7 +6,20 @@ export class MySQLProductoRepository implements IProductoRepository {
 
     async obtenerTodos(): Promise<Producto[]> {
         try {
-            const [results] = await db.query('SELECT producto.*, Categoria.Nombre as NombreCategoria FROM producto JOIN categoria ON producto.CategoriaID = categoria.ID');
+            const [results] = await db.query(`
+                SELECT producto.id,
+                    producto.nombre,
+                    producto.categoriaid,
+                    producto.precio,
+                    producto.descripcion,
+                    producto.marca,
+                    producto.modelo,
+                    producto.nivel_maximo,
+                    Producto.nivel_minimo,
+                    producto.stock_actual,
+                    producto.sku,
+                    producto.estado,
+                Categoria.Nombre as nombrecategoria FROM producto JOIN categoria ON producto.CategoriaID = categoria.ID`);
             return results as Producto[]
           } catch (error: any) {
             throw new Error('Error al obtener los productos: ' + error.message);
@@ -30,7 +43,7 @@ export class MySQLProductoRepository implements IProductoRepository {
 
     async obtenerPorId(id: number): Promise<Producto | null> {
         try {
-            const [results] = await db.query('SELECT * FROM Producto WHERE id = ?', [id]);
+            const [results] = await db.query('SELECT id, nombre, categoriaid, precio, descripcion, marca, modelo, nivel_maximo, nivel_minimo, stock_actual, sku, estado FROM Producto WHERE id = ?', [id]);
             const productos = results as Producto[];
             return productos.length > 0 ? productos[0] : null;
         } catch (error: any) {
@@ -73,7 +86,7 @@ export class MySQLProductoRepository implements IProductoRepository {
 
     async obtenerPorCategoria(categoriaId: number): Promise<Producto[]> {
         try {
-            const [results] = await db.query('SELECT * FROM Producto WHERE categoriaId = ?', [categoriaId]);
+            const [results] = await db.query('SELECT id, nombre, categoriaid, precio, descripcion, marca, modelo, nivel_maximo, nivel_minimo, stock_actual, sku, estado FROM Producto WHERE categoriaId = ?', [categoriaId]);
             return results as Producto[];
         }
         catch (error: any) {
@@ -86,8 +99,19 @@ export class MySQLProductoRepository implements IProductoRepository {
         try {
             const [results] = await db.query(`
                 SELECT 
-                    producto.*,
-                    Categoria.Nombre AS NombreCategoria
+                    producto.id,
+                    producto.nombre,
+                    producto.categoriaid,
+                    producto.precio,
+                    producto.descripcion,
+                    producto.marca,
+                    producto.modelo,
+                    producto.nivel_maximo,
+                    Producto.nivel_minimo,
+                    producto.stock_actual,
+                    producto.sku,
+                    producto.estado,
+                    Categoria.Nombre AS nombrecategoria
                 FROM 
                     Producto
                 JOIN 
@@ -103,7 +127,7 @@ export class MySQLProductoRepository implements IProductoRepository {
     async obtenerProductosDebajoDelNivelMinimo(): Promise<Producto[]> {
         try {
             const [results] = await db.query(`
-                select ID, Nombre, Stock_Actual from producto
+                select id, nombre, stock_actual from producto
 where Stock_Actual < Nivel_Minimo;
             `);
             return results as Producto[];
@@ -117,7 +141,7 @@ where Stock_Actual < Nivel_Minimo;
     async obtenerProductosArribaDelNivelMaximo(): Promise<Producto[]> {
         try {
             const [results] = await db.query(`
-                select ID, Nombre, Stock_Actual from producto
+                select id, nombre, stock_actual from producto
 where Stock_Actual > Nivel_Maximo;
             `);
             return results as Producto[];

@@ -5,7 +5,7 @@ import { db } from "./connection";
 export class MySQLRecepcionCompraRepository implements IRecepcionCompraRepository {
     async getAll(): Promise<RecepcionCompra[]> {
         try {
-            const [results] = await db.query('SELECT ID, Orden_CompraID, Fecha_Recepcion, Estado FROM Recepcion_Compra');
+            const [results] = await db.query('SELECT id, orden_compraid, fecha_recepcion, estado FROM Recepcion_Compra');
             console.log(results);
             return results as any[];
         } catch (error : any) {

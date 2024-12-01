@@ -5,7 +5,7 @@ import { db } from "./connection";
 export class MySQLProveedorRepository implements IProveedorRepository {
     async obtenerTodos(): Promise<Proveedor[]> {
         try {
-            const [results] = await db.query('SELECT * FROM Proveedor');
+            const [results] = await db.query('SELECT id, nombre, contacto, telefono, email, direccion FROM Proveedor');
             return results as Proveedor[];
         } catch (error: any) {
             throw new Error('Error al obtener todos los proveedores: ' + error.message);
@@ -29,7 +29,7 @@ export class MySQLProveedorRepository implements IProveedorRepository {
 
     async obtenerPorId(id: number): Promise<Proveedor | null> {
         try {
-            const [results] = await db.query('SELECT * FROM Proveedor WHERE id = ?', [id]);
+            const [results] = await db.query('SELECT id, nombre, contacto, telefono, email, direccion FROM Proveedor WHERE id = ?', [id]);
             const proveedores = results as Proveedor[];
             return proveedores.length > 0 ? proveedores[0] : null;
         } catch (error: any) {
