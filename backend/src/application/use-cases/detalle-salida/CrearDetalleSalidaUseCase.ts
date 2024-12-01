@@ -5,7 +5,7 @@ import { DetalleSalida } from '../../../domain/entities/DetalleSalida';
 export class CrearDetalleSalidaUseCase {
   constructor(private detalleSalidaRepository: IDetalleSalidaRepository) {}
 
-  async execute(detalleSalida: DetalleSalida): Promise<void> {
-    await this.detalleSalidaRepository.agregarDetalle(detalleSalida);
+  async execute(data: {Salida_InventarioID: number; ProductoID: number; Cantidad: number; Precio_Unitario: number; Subtotal: number; Estado: string }): Promise<void> {
+    await this.detalleSalidaRepository.crear(data);
   }
 }
