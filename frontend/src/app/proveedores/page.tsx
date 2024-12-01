@@ -9,23 +9,23 @@ function Proveedores() {
   const columns = [
     {
       header: "ID",
-      accessorKey: "ID",
+      accessorKey: "id",
     },
     {
       header: "Nombre",
-      accessorKey: "Nombre",
+      accessorKey: "nombre",
     },
     {
       header: "Dirección",
-      accessorKey: "Direccion",
+      accessorKey: "direccion",
     },
     {
       header: "Teléfono",
-      accessorKey: "Telefono",
+      accessorKey: "telefono",
     },
     {
       header: "Email",
-      accessorKey: "Email",
+      accessorKey: "email",
     },
   ]
 

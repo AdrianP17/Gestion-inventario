@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useProductos } from "@/hooks/useProductos"
 import SimpleTable from "@/components/SimpleTable"
 import { useRouter } from "next/navigation";
+import api from "@/lib/api"
 
 function Productos() {
   const { loading, productos } = useProductos()
@@ -14,45 +15,50 @@ function Productos() {
   }
   
   const handleDelete = (id: number) => {
-    router.push(`/productos/${id}`);
+    const confirmation = confirm("¿Estás seguro de que deseas eliminar este producto?");
+    if (!confirmation) {
+      return;
+    }
+    api.delete(`/productos/${id}`);
+    router.refresh();
   }
   
   const columns = [
     {
       header: "ID",
-      accessorKey: "ID",
+      accessorKey: "id",
     },
     {
       header: "Categoría",
-      accessorKey: "NombreCategoria",
+      accessorKey: "nombrecategoria",
     },
     {
       header: "Nombre",
-      accessorKey: "Nombre",
+      accessorKey: "nombre",
     },
     {
       header: "Descripción",
-      accessorKey: "Descripcion",
+      accessorKey: "descripcion",
     },
     {
       header: "Marca",
-      accessorKey: "Marca",
+      accessorKey: "marca",
     },
     {
       header: "Modelo",
-      accessorKey: "Modelo",
+      accessorKey: "modelo",
     },
     {
       header: "Precio",
-      accessorKey: "Precio",
+      accessorKey: "precio",
     },
     {
       header: "Nivel Min",
-      accessorKey: "Nivel_Minimo",
+      accessorKey: "nivel_minimo",
     },
     {
       header: "Nivel Max",
-      accessorKey: "Nivel_Maximo",
+      accessorKey: "nivel_maximo",
     },
   ]
 

@@ -19,39 +19,39 @@ export default function Home() {
   const columnsInventario = [
     {
       header: 'ID',
-      accessorKey: 'ID',
+      accessorKey: 'id',
     },
     {
       header: 'SKU',
-      accessorKey: 'SKU',
+      accessorKey: 'sku',
     },
     {
       header: 'Nombre',
-      accessorKey: 'Nombre',
+      accessorKey: 'nombre',
     },
     {
       header: 'Categoria',
-      accessorKey: 'NombreCategoria',
+      accessorKey: 'nombrecategoria',
     },
     {
       header: 'Precio',
-      accessorKey: 'Precio',
+      accessorKey: 'precio',
     },
     {
       header: 'Marca',
-      accessorKey: 'Marca',
+      accessorKey: 'marca',
     },
     {
       header: 'Modelo',
-      accessorKey: 'Modelo',
+      accessorKey: 'modelo',
     },
     {
       header: 'Stock',
-      accessorKey: 'Stock_Actual',
+      accessorKey: 'stock_actual',
     },
     {
       header: 'Estado',
-      accessorKey: 'Estado',
+      accessorKey: 'estado',
     },
   ];
 

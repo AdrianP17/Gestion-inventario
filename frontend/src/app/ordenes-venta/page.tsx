@@ -11,28 +11,28 @@ function OrdenesVenta() {
   const columns = [
     {
       header: "ID",
-      accessorKey: "ID",
+      accessorKey: "id",
     },
     {
       header: "Fecha de Registro",
-      accessorKey: "Fecha_Registro",
+      accessorKey: "fecha_registro",
       cell: (info : {getValue: () => string}) => formatearFecha(info.getValue()),
     },
     {
       header: "Motivo",
-      accessorKey: "Motivo",
+      accessorKey: "motivo",
     },
     {
       header: "Estado",
-      accessorKey: "Estado",
+      accessorKey: "estado",
     },
     {
       header: "Total",
-      accessorKey: "Total_Salida",
+      accessorKey: "total_salida",
     },
     {
       header: "Observaciones",
-      accessorKey: "Observaciones",
+      accessorKey: "observaciones",
     },
   ]
   return (
