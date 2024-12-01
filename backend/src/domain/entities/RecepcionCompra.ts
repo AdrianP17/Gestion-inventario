@@ -1,8 +1,8 @@
 export class RecepcionCompra {
     constructor(
-    id: number,
-    RecepcionCompraId: number,
-    fechaRecepcion: string,
-    estado: string) {}
-
+      public id: number,
+      public ordenCompraId: number,
+      public fechaRecepcion: Date,
+      public estado: 'Completa' | 'Parcial' | 'Pendiente'
+    ) {}
 }
