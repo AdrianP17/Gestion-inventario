@@ -9,14 +9,28 @@ import { MySQLSalidaInventarioRepository } from '../../infrastructure/database/m
 import { PostgreSQLSalidaInventarioRepository } from '../../infrastructure/database/postgresql/PostgreSQLSalidaInventarioRepository';
 const salidaInventarioRouter = Router();
 
-const salidaInventarioRepository = new MySQLSalidaInventarioRepository();
 const postgresqlsalidaInventarioRepository = new PostgreSQLSalidaInventarioRepository();
+//POSTGRESQL
+// const crearSalidaInventarioUseCase = new CrearSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
+// const obtenerTodasSalidasInventarioUseCase = new ObtenerTodasSalidasInventarioUseCase(postgresqlsalidaInventarioRepository);
+// const obtenerSalidaInventarioPorIdUseCase = new ObtenerSalidaInventarioPorIdUseCase(postgresqlsalidaInventarioRepository);
+// const actualizarSalidaInventarioUseCase = new ActualizarSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
+// const eliminarSalidaInventarioUseCase = new EliminarSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
+// const salidaInventarioController = new SalidaInventarioController(
+//   crearSalidaInventarioUseCase,
+//   obtenerTodasSalidasInventarioUseCase,
+//   obtenerSalidaInventarioPorIdUseCase,
+//   actualizarSalidaInventarioUseCase,
+//   eliminarSalidaInventarioUseCase
+// );
 
-const crearSalidaInventarioUseCase = new CrearSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
-const obtenerTodasSalidasInventarioUseCase = new ObtenerTodasSalidasInventarioUseCase(postgresqlsalidaInventarioRepository);
-const obtenerSalidaInventarioPorIdUseCase = new ObtenerSalidaInventarioPorIdUseCase(postgresqlsalidaInventarioRepository);
-const actualizarSalidaInventarioUseCase = new ActualizarSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
-const eliminarSalidaInventarioUseCase = new EliminarSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
+//MYSQL
+const MySQLsalidaInventarioRepository = new MySQLSalidaInventarioRepository();
+const crearSalidaInventarioUseCase = new CrearSalidaInventarioUseCase(MySQLsalidaInventarioRepository);
+const obtenerTodasSalidasInventarioUseCase = new ObtenerTodasSalidasInventarioUseCase(MySQLsalidaInventarioRepository);
+const obtenerSalidaInventarioPorIdUseCase = new ObtenerSalidaInventarioPorIdUseCase(MySQLsalidaInventarioRepository);
+const actualizarSalidaInventarioUseCase = new ActualizarSalidaInventarioUseCase(MySQLsalidaInventarioRepository);
+const eliminarSalidaInventarioUseCase = new EliminarSalidaInventarioUseCase(MySQLsalidaInventarioRepository);
 const salidaInventarioController = new SalidaInventarioController(
   crearSalidaInventarioUseCase,
   obtenerTodasSalidasInventarioUseCase,

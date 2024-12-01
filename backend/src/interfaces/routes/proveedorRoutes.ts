@@ -10,15 +10,32 @@ import { MySQLProveedorRepository } from '../../infrastructure/database/mysql/My
 import { PostgreSQLProveedorRepository } from '../../infrastructure/database/postgresql/PostgreSQLProveedorRepository';
 const proveedorRouter = Router();
 
-const proveedorRepository = new MySQLProveedorRepository();
 const postgresqlProveedorRepository = new PostgreSQLProveedorRepository();
+//POSTGRESQL
+// const crearProveedorUseCase = new CrearProveedorUseCase(postgresqlProveedorRepository);
+// const obtenerTodosProveedoresUseCase = new ObtenerTodosProveedoresUseCase(postgresqlProveedorRepository);
+// const obtenerListaProveedores = new ObtenerListaProveedorUseCase(postgresqlProveedorRepository);
+// const obtenerProveedorPorIdUseCase = new ObtenerProveedorPorIdUseCase(postgresqlProveedorRepository);
+// const actualizarProveedorUseCase = new ActualizarProveedorUseCase(postgresqlProveedorRepository);
+// const eliminarProveedorUseCase = new EliminarProveedorUseCase(postgresqlProveedorRepository);
+// const proveedorController = new ProveedorController(
+//   crearProveedorUseCase,
+//   obtenerTodosProveedoresUseCase,
+//   obtenerProveedorPorIdUseCase,
+//   actualizarProveedorUseCase,
+//   eliminarProveedorUseCase,
+//   obtenerListaProveedores
+// );
 
-const crearProveedorUseCase = new CrearProveedorUseCase(postgresqlProveedorRepository);
-const obtenerTodosProveedoresUseCase = new ObtenerTodosProveedoresUseCase(postgresqlProveedorRepository);
-const obtenerListaProveedores = new ObtenerListaProveedorUseCase(postgresqlProveedorRepository);
-const obtenerProveedorPorIdUseCase = new ObtenerProveedorPorIdUseCase(postgresqlProveedorRepository);
-const actualizarProveedorUseCase = new ActualizarProveedorUseCase(postgresqlProveedorRepository);
-const eliminarProveedorUseCase = new EliminarProveedorUseCase(postgresqlProveedorRepository);
+
+//MYSQL
+const MySQLproveedorRepository = new MySQLProveedorRepository();
+const crearProveedorUseCase = new CrearProveedorUseCase(MySQLproveedorRepository);
+const obtenerTodosProveedoresUseCase = new ObtenerTodosProveedoresUseCase(MySQLproveedorRepository);
+const obtenerListaProveedores = new ObtenerListaProveedorUseCase(MySQLproveedorRepository);
+const obtenerProveedorPorIdUseCase = new ObtenerProveedorPorIdUseCase(MySQLproveedorRepository);
+const actualizarProveedorUseCase = new ActualizarProveedorUseCase(MySQLproveedorRepository);
+const eliminarProveedorUseCase = new EliminarProveedorUseCase(MySQLproveedorRepository);
 const proveedorController = new ProveedorController(
   crearProveedorUseCase,
   obtenerListaProveedores

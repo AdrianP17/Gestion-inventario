@@ -13,11 +13,27 @@ const categoriaRouter = Router();
 const MySQLcategoriaRepository = new MySQLCategoriaRepository();
 const PostgreSQLcategoriaRepository = new PostgreSQLCategoriaRepository();
 
-const crearCategoriaUseCase = new CrearCategoriaUseCase(PostgreSQLcategoriaRepository);
-const obtenerTodasCategoriasUseCase = new ObtenerTodasCategoriasUseCase(PostgreSQLcategoriaRepository);
-const obtenerCategoriaPorIdUseCase = new ObtenerCategoriaPorIdUseCase(PostgreSQLcategoriaRepository);
-const actualizarCategoriaUseCase = new ActualizarCategoriaUseCase(PostgreSQLcategoriaRepository);
-const eliminarCategoriaUseCase = new EliminarCategoriaUseCase(PostgreSQLcategoriaRepository);
+
+// POSTGRESQL
+// const crearCategoriaUseCase = new CrearCategoriaUseCase(PostgreSQLcategoriaRepository);
+// const obtenerTodasCategoriasUseCase = new ObtenerTodasCategoriasUseCase(PostgreSQLcategoriaRepository);
+// const obtenerCategoriaPorIdUseCase = new ObtenerCategoriaPorIdUseCase(PostgreSQLcategoriaRepository);
+// const actualizarCategoriaUseCase = new ActualizarCategoriaUseCase(PostgreSQLcategoriaRepository);
+// const eliminarCategoriaUseCase = new EliminarCategoriaUseCase(PostgreSQLcategoriaRepository);
+// const categoriaController = new CategoriaController(
+//   crearCategoriaUseCase,
+//   obtenerTodasCategoriasUseCase,
+//   obtenerCategoriaPorIdUseCase,
+//   actualizarCategoriaUseCase,
+//   eliminarCategoriaUseCase
+// );
+
+// MYSQL
+const crearCategoriaUseCase = new CrearCategoriaUseCase(MySQLcategoriaRepository);
+const obtenerTodasCategoriasUseCase = new ObtenerTodasCategoriasUseCase(MySQLcategoriaRepository);
+const obtenerCategoriaPorIdUseCase = new ObtenerCategoriaPorIdUseCase(MySQLcategoriaRepository);
+const actualizarCategoriaUseCase = new ActualizarCategoriaUseCase(MySQLcategoriaRepository);
+const eliminarCategoriaUseCase = new EliminarCategoriaUseCase(MySQLcategoriaRepository);
 const categoriaController = new CategoriaController(
   crearCategoriaUseCase,
   obtenerTodasCategoriasUseCase,
@@ -25,6 +41,7 @@ const categoriaController = new CategoriaController(
   actualizarCategoriaUseCase,
   eliminarCategoriaUseCase
 );
+
 
 categoriaRouter.post('/', (req, res) => {
   console.log(req.body); 
