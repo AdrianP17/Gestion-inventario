@@ -13,18 +13,32 @@ import { MySQLProductoRepository } from '../../infrastructure/database/mysql/MyS
 import { PostgreSQLProductoRepository } from '../../infrastructure/database/postgresql/PostgreSQLProductoRepository';
 const productoRouter = Router();
 
-const productoRepository = new MySQLProductoRepository();
+//POSTGRESQL
 const postgresqlproductoRepository = new PostgreSQLProductoRepository();
 
-const crearProductoUseCase = new CrearProductoUseCase(postgresqlproductoRepository);
-const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(postgresqlproductoRepository);
-const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(postgresqlproductoRepository);
-const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(postgresqlproductoRepository);
-const actualizarProductoUseCase = new ActualizarProductoUseCase(postgresqlproductoRepository);
-const eliminarProductoUseCase = new EliminarProductoUseCase(postgresqlproductoRepository);
-const obtenerInventarioProductosUseCase = new ObtenerInventarioProductosUseCase(postgresqlproductoRepository);
-const obtenerProductosMaximosUseCase = new ObtenerProductosMaximosUseCase(postgresqlproductoRepository);
-const obtenerProductosMinimosUseCase = new ObtenerProductosMinimosUseCase(postgresqlproductoRepository);
+// const crearProductoUseCase = new CrearProductoUseCase(postgresqlproductoRepository);
+// const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(postgresqlproductoRepository);
+// const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(postgresqlproductoRepository);
+// const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(postgresqlproductoRepository);
+// const actualizarProductoUseCase = new ActualizarProductoUseCase(postgresqlproductoRepository);
+// const eliminarProductoUseCase = new EliminarProductoUseCase(postgresqlproductoRepository);
+// const obtenerInventarioProductosUseCase = new ObtenerInventarioProductosUseCase(postgresqlproductoRepository);
+// const obtenerProductosMaximosUseCase = new ObtenerProductosMaximosUseCase(postgresqlproductoRepository);
+// const obtenerProductosMinimosUseCase = new ObtenerProductosMinimosUseCase(postgresqlproductoRepository);
+
+
+//MYSQL
+const MySQLproductoRepository = new MySQLProductoRepository();
+
+const crearProductoUseCase = new CrearProductoUseCase(MySQLproductoRepository);
+const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(MySQLproductoRepository);
+const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(MySQLproductoRepository);
+const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(MySQLproductoRepository);
+const actualizarProductoUseCase = new ActualizarProductoUseCase(MySQLproductoRepository);
+const eliminarProductoUseCase = new EliminarProductoUseCase(MySQLproductoRepository);
+const obtenerInventarioProductosUseCase = new ObtenerInventarioProductosUseCase(MySQLproductoRepository);
+const obtenerProductosMaximosUseCase = new ObtenerProductosMaximosUseCase(MySQLproductoRepository);
+const obtenerProductosMinimosUseCase = new ObtenerProductosMinimosUseCase(MySQLproductoRepository);
 
 const productoController = new ProductoController(
   crearProductoUseCase,

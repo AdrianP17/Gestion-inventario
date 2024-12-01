@@ -6,9 +6,13 @@ import { MySQLRecepcionCompraRepository } from "../../infrastructure/database/my
 import { PostgreSQLRecepcionCompraRepository } from "../../infrastructure/database/postgresql/PostgreSQLRecepcionCompraRepository";
 const recepcionRoutes = Router();
 
-const recepcionCompraRepository = new MySQLRecepcionCompraRepository();
+const MySQLrecepcionCompraRepository = new MySQLRecepcionCompraRepository();
 const postgresqlRecepcionCompraRepository = new PostgreSQLRecepcionCompraRepository();
-const obtenerTodosRecepcionCompraUseCase = new ObtenerTodosRecepcionCompraUseCase(postgresqlRecepcionCompraRepository);
+
+//POSTGRESQL
+// const obtenerTodosRecepcionCompraUseCase = new ObtenerTodosRecepcionCompraUseCase(postgresqlRecepcionCompraRepository);
+//MYSQL
+const obtenerTodosRecepcionCompraUseCase = new ObtenerTodosRecepcionCompraUseCase(MySQLrecepcionCompraRepository);
 
 const recepcionCompraController = new RecepcionCompraController(obtenerTodosRecepcionCompraUseCase);
 
