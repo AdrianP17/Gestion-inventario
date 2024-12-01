@@ -10,19 +10,21 @@ import { ObtenerInventarioProductosUseCase } from '../../application/use-cases/p
 import { ObtenerProductosMaximosUseCase } from '../../application/use-cases/producto/ObtenerProductosMaximos';
 import { ObtenerProductosMinimosUseCase } from '../../application/use-cases/producto/ObtenerProductosMinimosUseCase';
 import { MySQLProductoRepository } from '../../infrastructure/database/mysql/MySQLProductoRepository';
-
+import { PostgreSQLProductoRepository } from '../../infrastructure/database/postgresql/PostgreSQLProductoRepository';
 const productoRouter = Router();
 
 const productoRepository = new MySQLProductoRepository();
-const crearProductoUseCase = new CrearProductoUseCase(productoRepository);
-const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(productoRepository);
-const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(productoRepository);
-const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(productoRepository);
-const actualizarProductoUseCase = new ActualizarProductoUseCase(productoRepository);
-const eliminarProductoUseCase = new EliminarProductoUseCase(productoRepository);
-const obtenerInventarioProductosUseCase = new ObtenerInventarioProductosUseCase(productoRepository);
-const obtenerProductosMaximosUseCase = new ObtenerProductosMaximosUseCase(productoRepository);
-const obtenerProductosMinimosUseCase = new ObtenerProductosMinimosUseCase(productoRepository);
+const postgresqlproductoRepository = new PostgreSQLProductoRepository();
+
+const crearProductoUseCase = new CrearProductoUseCase(postgresqlproductoRepository);
+const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(postgresqlproductoRepository);
+const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(postgresqlproductoRepository);
+const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(postgresqlproductoRepository);
+const actualizarProductoUseCase = new ActualizarProductoUseCase(postgresqlproductoRepository);
+const eliminarProductoUseCase = new EliminarProductoUseCase(postgresqlproductoRepository);
+const obtenerInventarioProductosUseCase = new ObtenerInventarioProductosUseCase(postgresqlproductoRepository);
+const obtenerProductosMaximosUseCase = new ObtenerProductosMaximosUseCase(postgresqlproductoRepository);
+const obtenerProductosMinimosUseCase = new ObtenerProductosMinimosUseCase(postgresqlproductoRepository);
 
 const productoController = new ProductoController(
   crearProductoUseCase,

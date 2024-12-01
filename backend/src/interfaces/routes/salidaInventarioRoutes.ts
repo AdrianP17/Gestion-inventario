@@ -6,15 +6,17 @@ import { ObtenerSalidaInventarioPorIdUseCase } from '../../application/use-cases
 import { ActualizarSalidaInventarioUseCase } from '../../application/use-cases/salida-inventario/ActualizarSalidaInventarioUseCase';
 import { EliminarSalidaInventarioUseCase } from '../../application/use-cases/salida-inventario/EliminarSalidaInventarioUseCase';
 import { MySQLSalidaInventarioRepository } from '../../infrastructure/database/mysql/MySQLSalidaInventarioRepository';
-
+import { PostgreSQLSalidaInventarioRepository } from '../../infrastructure/database/postgresql/PostgreSQLSalidaInventarioRepository';
 const salidaInventarioRouter = Router();
 
 const salidaInventarioRepository = new MySQLSalidaInventarioRepository();
-const crearSalidaInventarioUseCase = new CrearSalidaInventarioUseCase(salidaInventarioRepository);
-const obtenerTodasSalidasInventarioUseCase = new ObtenerTodasSalidasInventarioUseCase(salidaInventarioRepository);
-const obtenerSalidaInventarioPorIdUseCase = new ObtenerSalidaInventarioPorIdUseCase(salidaInventarioRepository);
-const actualizarSalidaInventarioUseCase = new ActualizarSalidaInventarioUseCase(salidaInventarioRepository);
-const eliminarSalidaInventarioUseCase = new EliminarSalidaInventarioUseCase(salidaInventarioRepository);
+const postgresqlsalidaInventarioRepository = new PostgreSQLSalidaInventarioRepository();
+
+const crearSalidaInventarioUseCase = new CrearSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
+const obtenerTodasSalidasInventarioUseCase = new ObtenerTodasSalidasInventarioUseCase(postgresqlsalidaInventarioRepository);
+const obtenerSalidaInventarioPorIdUseCase = new ObtenerSalidaInventarioPorIdUseCase(postgresqlsalidaInventarioRepository);
+const actualizarSalidaInventarioUseCase = new ActualizarSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
+const eliminarSalidaInventarioUseCase = new EliminarSalidaInventarioUseCase(postgresqlsalidaInventarioRepository);
 const salidaInventarioController = new SalidaInventarioController(
   crearSalidaInventarioUseCase,
   obtenerTodasSalidasInventarioUseCase,

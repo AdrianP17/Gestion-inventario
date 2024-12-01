@@ -3,10 +3,12 @@ import { RecepcionCompra } from "../../domain/entities/RecepcionCompra";
 import { ObtenerTodosRecepcionCompraUseCase } from "../../application/use-cases/recepcion-compra/ObtenerTodosRecepcionCompra";
 import { RecepcionCompraController } from "../controllers/RecepcionCompraController";
 import { MySQLRecepcionCompraRepository } from "../../infrastructure/database/mysql/MySQLRecepcionCompraRepository";
+import { PostgreSQLRecepcionCompraRepository } from "../../infrastructure/database/postgresql/PostgreSQLRecepcionCompraRepository";
 const recepcionRoutes = Router();
 
 const recepcionCompraRepository = new MySQLRecepcionCompraRepository();
-const obtenerTodosRecepcionCompraUseCase = new ObtenerTodosRecepcionCompraUseCase(recepcionCompraRepository);
+const postgresqlRecepcionCompraRepository = new PostgreSQLRecepcionCompraRepository();
+const obtenerTodosRecepcionCompraUseCase = new ObtenerTodosRecepcionCompraUseCase(postgresqlRecepcionCompraRepository);
 
 const recepcionCompraController = new RecepcionCompraController(obtenerTodosRecepcionCompraUseCase);
 
