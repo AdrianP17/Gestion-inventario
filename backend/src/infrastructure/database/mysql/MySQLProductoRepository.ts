@@ -55,8 +55,8 @@ export class MySQLProductoRepository implements IProductoRepository {
             console.log(producto);
             const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo } = producto;
             await db.execute(
-                'INSERT INTO Producto (nombre, categoriaId, precio, descripcion, marca, modelo, nivel_Maximo, nivel_Minimo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                [nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo]
+                'INSERT INTO Producto (nombre, categoriaId, precio, descripcion, marca, modelo, nivel_Maximo, nivel_Minimo, sku) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo, `PROD0${Math.floor(Math.random() * 1000)}`]
             );
         } catch (error: any) {
             throw new Error('Error al crear el producto: ' + error.message);
