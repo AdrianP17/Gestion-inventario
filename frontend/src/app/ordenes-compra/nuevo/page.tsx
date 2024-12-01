@@ -28,7 +28,7 @@ function NuevaOrdenCompra() {
         <div className="container-custom">
             <h2 className="title">Formulario de orden de compra</h2>
             <div className="max-w-screen-lg ">
-              <FormularioOrdenCompra proveedores={proveedores} productos={productos} onSuccess={() => {console.log("Orden de compra creada exitosamente")}} />
+              <FormularioOrdenCompra proveedores={proveedores} productos={productos}  />
             </div>
         </div>
     </main>

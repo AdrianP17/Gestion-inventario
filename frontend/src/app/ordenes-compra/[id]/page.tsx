@@ -23,24 +23,24 @@ export default function DetalleOrdenPage() {
             </div>
 
             <div className="flex gap-4 flex-wrap mb-8">
-                <div className="rounded-2xl bg-primary text-white p-6 flex flex-col items-center">
+                <div className="rounded-2xl border-primary border-2 text-blue-950 p-6 flex flex-col items-center">
                     <p className="text-4xl mb-4">{orden.ID}</p>
                     <span className='opacity-60'>ID de la Orden</span>
                 </div>
-                <div className="rounded-2xl bg-primary text-white p-6 px-10 flex flex-col items-center">
-                    <p className="text-4xl mb-4">{orden.NombreProveedor}</p>
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 px-10 flex flex-col items-center">
+                    <p className="text-2xl mb-4">{orden.NombreProveedor}</p>
                     <span className='opacity-50'>Proveedor</span>
                 </div>
-                <div className="rounded-2xl bg-primary text-white p-6 px-10 flex flex-col items-center">
-                    <p className="text-4xl mb-4">{formatearFecha(orden.Fecha_Compra)}</p>
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 px-10 flex flex-col items-center">
+                    <p className="text-2xl mb-4">{formatearFecha(orden.Fecha_Compra)}</p>
                     <span className='opacity-50'>Fecha de Orden</span>
                 </div>
-                <div className="rounded-2xl bg-primary text-white p-6 px-10 flex flex-col items-center">
-                    <p className="text-4xl mb-4">{orden.Estado}</p>
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 px-10 flex flex-col items-center">
+                    <p className="text-2xl mb-4">{orden.Estado}</p>
                     <span className='opacity-50'>Estado</span>
                 </div>
-                <div className="rounded-2xl bg-primary text-white p-6 flex flex-col items-center">
-                    <p className="text-4xl mb-4">$ {orden.Total_Compra}</p>
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 flex flex-col items-center">
+                    <p className="text-2xl mb-4">$ {orden.Total_Compra}</p>
                     <span className='opacity-50'>Total</span>
                 </div>
             </div>

@@ -1,19 +1,19 @@
 import {z} from 'zod'
 
 export const detallePedidoSchema = z.object({
-    productoId: z.number().min(1, 'Debe seleccionar un producto'),
+    productoId: z.string().nonempty('Debe seleccionar un producto'),
     nombreProducto: z.string().nonempty('El nombre del producto es obligatorio'),
-    cantidad: z.number().min(1, 'La cantidad debe ser al menos 1'),
-    precioUnitario: z.number().min(0.01, 'El precio unitario debe ser mayor a 0'),
-    subtotal: z.number(),
+    cantidad: z.string().refine((value) => parseInt(value) > 0, 'La cantidad debe ser al menos 1'),
+    precioUnitario: z.string().refine((value) => parseFloat(value) > 0, 'El precio unitario debe ser mayor a 0'),
+    subtotal: z.string(),
 });
 
 export const OrdenCompraSchema = z.object({
-    proveedorID: z.number().min(1, 'El proveedor es obligatorio'),
+    proveedorId: z.string().min(1, 'El proveedor es obligatorio'),
     fechaCompra: z.string(),
     estado: z.string().min(1, 'El estado es obligatorio'),
     detalles: z.array(detallePedidoSchema),
-    totalCompra: z.number().positive(),
+    totalCompra: z.string().refine((value) => parseFloat(value) > 0, 'El total de la compra debe ser mayor a 0'),
 })
 
 export type OrdenCompraFormulario = z.infer<typeof OrdenCompraSchema>;
