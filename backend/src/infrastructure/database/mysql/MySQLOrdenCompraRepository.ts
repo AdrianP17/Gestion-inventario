@@ -7,11 +7,11 @@ export class MySQLOrdenCompraRepository implements IOrdenCompraRepository {
     async obtenerTodas(): Promise<OrdenCompra[]> {
         try {
             const [results] :any = await db.query(`
-                SELECT Orden_Compra.ID, Proveedor.Nombre AS NombreProveedor, Orden_Compra.Fecha_Compra, 
-                   Orden_Compra.Estado, Orden_Compra.Total_Compra
+                SELECT Orden_Compra.id, Proveedor.nombre AS nombreproveedor, Orden_Compra.fecha_compra, 
+                   Orden_Compra.estado, Orden_Compra.total_compra
             FROM Orden_Compra
             JOIN Proveedor ON Orden_Compra.ProveedorID = Proveedor.ID
-            ORDER BY Orden_Compra.Fecha_Compra DESC`);
+            ORDER BY Orden_Compra.Fecha_Compra`);
 
             return results;
         } catch (error:any) {
@@ -22,12 +22,12 @@ export class MySQLOrdenCompraRepository implements IOrdenCompraRepository {
         try {
             const [ordenes] : any[] = await db.query(`
                 SELECT 
-                Orden_Compra.ID,
-                Orden_Compra.Fecha_Compra,
-                Orden_Compra.Estado,
-                Orden_Compra.Total_Compra,
-                Proveedor.Nombre AS NombreProveedor,
-                Orden_Compra.ProveedorID
+                Orden_Compra.id,
+                Orden_Compra.fecha_compra,
+                Orden_Compra.estado,
+                Orden_Compra.total_compra,
+                Proveedor.Nombre AS nombreproveedor,
+                Orden_Compra.proveedorid
             FROM Orden_Compra
             JOIN Proveedor ON Orden_Compra.ProveedorID = Proveedor.ID
             WHERE Orden_Compra.ID = ?
@@ -38,11 +38,11 @@ export class MySQLOrdenCompraRepository implements IOrdenCompraRepository {
         }
         const [detalles] = await db.query(`
             SELECT 
-                Detalle_Compra.ProductoID,
-                Producto.Nombre AS NombreProducto,
-                Detalle_Compra.Cantidad,
-                Detalle_Compra.Precio_Unitario,
-                Detalle_Compra.Subtotal
+                Detalle_Compra.productoid,
+                Producto.Nombre AS nombreproducto,
+                Detalle_Compra.cantidad,
+                Detalle_Compra.precio_unitario,
+                Detalle_Compra.subtotal
             FROM Detalle_Compra
             JOIN Producto ON Detalle_Compra.ProductoID = Producto.ID
             WHERE Detalle_Compra.Orden_CompraID = ?

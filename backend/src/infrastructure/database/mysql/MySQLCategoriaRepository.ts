@@ -5,7 +5,7 @@ import { db } from './connection'; // Importar la conexión de la base de datos
 export class MySQLCategoriaRepository  implements ICategoriaRepository {
     async obtenerTodas(): Promise<Categoria[]> {
         try {
-            const [results] = await db.query('SELECT ID, Nombre FROM Categoria');
+            const [results] = await db.query('SELECT id, nombre FROM Categoria');
             return results as Categoria[];
         } catch (error: any) {
             throw new Error('Error al obtener todas las categorías: ' + error.message);
@@ -13,7 +13,7 @@ export class MySQLCategoriaRepository  implements ICategoriaRepository {
     }
     async obtenerPorId(id: number): Promise<Categoria | null> {
         try {
-            const [results] = await db.query('SELECT * FROM Categoria WHERE id = ?', [id]);
+            const [results] = await db.query('SELECT id,nombre,descripcion FROM Categoria WHERE id = ?', [id]);
             const categorias = results as Categoria[];
             return categorias.length > 0 ? categorias[0] : null;
         } catch (error: any) {

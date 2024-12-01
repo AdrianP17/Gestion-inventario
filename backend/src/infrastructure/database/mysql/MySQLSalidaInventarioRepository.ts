@@ -7,7 +7,7 @@ import { DetalleSalida } from "../../../domain/entities/DetalleSalida";
 export class MySQLSalidaInventarioRepository implements ISalidaInventarioRepository {
     async obtenerTodas(): Promise<SalidaInventario[]> {
         try {
-            const [results] :any = await db.query('SELECT * FROM orden_salida_inventario');
+            const [results] :any = await db.query('SELECT id, fecha_registro, motivo, area, estado, total_salida, observaciones FROM orden_salida_inventario;');
             return results;
         } catch (error: any) {
             throw new Error(error.message); 
@@ -17,34 +17,42 @@ export class MySQLSalidaInventarioRepository implements ISalidaInventarioReposit
         try {
             const query = `
         SELECT 
-          osi.ID,
-          osi.Fecha_Registro,
-          osi.Motivo,
-          osi.Area,
-          osi.Estado,
-          osi.Total_Salida,
-          osi.Observaciones
+          osi.id,
+          osi.fecha_registro,
+          osi.motivo,
+          osi.area,
+          osi.estado,
+          osi.total_salida,
+          osi.observaciones
         FROM 
           orden_salida_inventario osi
         WHERE 
-          osi.ID = ?
+          osi.id = ?;
       `;
       const [result] : any[] = await db.query(query, [id]);
       if (result.length === 0) {
         return null;
       }
       const salidaInventario : SalidaInventario = result[0];
-      const detallesSalida = await this.obtenerDetallesPorSalida(salidaInventario.ID);
-      return new SalidaInventario(
-        salidaInventario.ID,
-        salidaInventario.Fecha_Registro,
-        salidaInventario.Motivo,
-        salidaInventario.Area,
-        salidaInventario.Estado,
-        salidaInventario.Total_Salida,
-        salidaInventario.Observaciones,
-        detallesSalida 
-      );
+    
+      const [ detallesSalida ] : any = await db.query(`
+        SELECT 
+           ds.productoid,
+            p.Nombre AS nombreproducto,
+            ds.cantidad,
+            ds.precio_unitario AS preciounitario,
+            ds.subtotal
+        FROM 
+            detalle_salida ds
+            JOIN producto p ON ds.productoid = p.ID
+        WHERE 
+            ds.Salida_InventarioID = ?;
+    `, [id]);
+    // const detallesSalida = await this.obtenerDetallesPorSalida(salidaInventario.ID);
+        
+      return {
+        ...salidaInventario,
+        detallesSalida}
         } catch (error: any) {
             throw new Error(error.message); 
         }
@@ -55,11 +63,11 @@ export class MySQLSalidaInventarioRepository implements ISalidaInventarioReposit
         try {
           const query = `
             SELECT 
-              ds.ProductoID AS productoId,
-              p.Nombre AS nombreProducto,
-              ds.Cantidad,
-              ds.Precio_Unitario AS precioUnitario,
-              ds.Subtotal
+              ds.productoid,
+              p.nombre AS nombreproducto,
+              ds.cantidad,
+              ds.Precio_Unitario AS preciounitario,
+              ds.subtotal
             FROM 
               detalle_salida ds
               INNER JOIN producto p ON ds.ProductoID = p.ID
