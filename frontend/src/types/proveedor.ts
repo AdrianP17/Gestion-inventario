@@ -1,8 +1,8 @@
 export interface Proveedor {
-    ID: number;
-    Nombre: string;
-    Contacto?: string;
-    Telefono?: string;
-    Email?: string;
-    Direccion?: string;
+    id: number;
+    nombre: string;
+    contacto?: string;
+    telefono?: string;
+    email?: string;
+    direccion?: string;
 }
