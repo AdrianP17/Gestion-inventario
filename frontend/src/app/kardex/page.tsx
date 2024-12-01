@@ -8,25 +8,25 @@ function Kardex() {
   const columnsKardex = [
     {
       header: 'ID',
-      accessorKey: 'ID',
+      accessorKey: 'id',
     },
     {
       header: 'Fecha de Movimiento',
-      accessorKey: 'Fecha_Movimiento',
+      accessorKey: 'fecha_movimiento',
       cell: (info : {getValue: () => string}) => formatearFecha(info.getValue()),
     },
     {
       header: 'Tipo de Movimiento',
-      accessorKey: 'Tipo_Movimiento',
+      accessorKey: 'tipo_movimiento',
     },
     {
       header: 'ID de Orden de Compra',
-      accessorKey: 'Orden_CompraID',
+      accessorKey: 'orden_compraid',
       cell: (info : {getValue: () => number}) => info.getValue() || 'N/A',
     },
     {
       header: 'ID de Orden de Venta',
-      accessorKey: 'Salida_InventarioID',
+      accessorKey: 'salida_inventarioid',
       cell: (info : {getValue: () => number}) => info.getValue() || 'N/A',
     },
   ];

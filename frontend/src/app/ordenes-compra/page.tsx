@@ -18,24 +18,24 @@ function OrdenesCompraPage() {
   const columns = [
     {
       header: "ID",
-      accessorKey: "ID",
+      accessorKey: "id",
     },
     {
       header: "Proveedor",
-      accessorKey: "NombreProveedor",
+      accessorKey: "nombreproveedor",
     },
     {
       header: "Fecha de Compra",
-      accessorKey: "Fecha_Compra",
+      accessorKey: "fecha_compra",
       cell: (info : {getValue: () => string}) => formatearFecha(info.getValue()),
     },
     {
       header: "Estado",
-      accessorKey: "Estado",
+      accessorKey: "estado",
     },
     {
       header: "Total",
-      accessorKey: "Total_Compra",
+      accessorKey: "total_compra",
     },
   ];
 
