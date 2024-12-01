@@ -7,16 +7,18 @@ import { ActualizarProveedorUseCase } from '../../application/use-cases/proveedo
 import { EliminarProveedorUseCase } from '../../application/use-cases/proveedor/EliminarProveedorUseCase';
 import { ObtenerListaProveedorUseCase } from '../../application/use-cases/proveedor/ObtenerListaProveedoresUseCase';
 import { MySQLProveedorRepository } from '../../infrastructure/database/mysql/MySQLProveedorRepository';
-
+import { PostgreSQLProveedorRepository } from '../../infrastructure/database/postgresql/PostgreSQLProveedorRepository';
 const proveedorRouter = Router();
 
 const proveedorRepository = new MySQLProveedorRepository();
-const crearProveedorUseCase = new CrearProveedorUseCase(proveedorRepository);
-const obtenerTodosProveedoresUseCase = new ObtenerTodosProveedoresUseCase(proveedorRepository);
-const obtenerListaProveedores = new ObtenerListaProveedorUseCase(proveedorRepository);
-const obtenerProveedorPorIdUseCase = new ObtenerProveedorPorIdUseCase(proveedorRepository);
-const actualizarProveedorUseCase = new ActualizarProveedorUseCase(proveedorRepository);
-const eliminarProveedorUseCase = new EliminarProveedorUseCase(proveedorRepository);
+const postgresqlProveedorRepository = new PostgreSQLProveedorRepository();
+
+const crearProveedorUseCase = new CrearProveedorUseCase(postgresqlProveedorRepository);
+const obtenerTodosProveedoresUseCase = new ObtenerTodosProveedoresUseCase(postgresqlProveedorRepository);
+const obtenerListaProveedores = new ObtenerListaProveedorUseCase(postgresqlProveedorRepository);
+const obtenerProveedorPorIdUseCase = new ObtenerProveedorPorIdUseCase(postgresqlProveedorRepository);
+const actualizarProveedorUseCase = new ActualizarProveedorUseCase(postgresqlProveedorRepository);
+const eliminarProveedorUseCase = new EliminarProveedorUseCase(postgresqlProveedorRepository);
 const proveedorController = new ProveedorController(
   crearProveedorUseCase,
   obtenerListaProveedores

@@ -3,12 +3,14 @@ import { KardexController } from '../controllers/KardexController';
 import { RegistrarMovimientoKardexUseCase } from '../../application/use-cases/kardex/RegistrarMovimientoKardexUseCase';
 import { ObtenerMovimientosUseCase } from '../../application/use-cases/kardex/ObtenerMovimientosUseCase';
 import { MySQLKardexRepository } from '../../infrastructure/database/mysql/MySQLKardexRepository';
+import { PostgreSQLKardexRepository } from '../../infrastructure/database/postgresql/PostgreSQLKardexRepository';
 
 const kardexRouter = Router();
 
 const kardexRepository = new MySQLKardexRepository();
-const registrarMovimientoKardexUseCase = new RegistrarMovimientoKardexUseCase(kardexRepository);
-const obtenerMovimientosUseCase = new ObtenerMovimientosUseCase(kardexRepository);
+const postgresqlKardexRepository = new PostgreSQLKardexRepository();
+const registrarMovimientoKardexUseCase = new RegistrarMovimientoKardexUseCase(postgresqlKardexRepository);
+const obtenerMovimientosUseCase = new ObtenerMovimientosUseCase(postgresqlKardexRepository);
 const kardexController = new KardexController(
   registrarMovimientoKardexUseCase,
   obtenerMovimientosUseCase
