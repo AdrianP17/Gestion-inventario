@@ -107,7 +107,7 @@ const table = useReactTable({
                             </TableHead>
                         ))
                     ))}
-                    {handleEdit && handleDelete && (
+                    {(handleEdit || handleDelete) && (
                         <TableHead><span>Acciones</span></TableHead>
                     )}
                 </TableRow>
@@ -120,14 +120,18 @@ const table = useReactTable({
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </TableCell>
                             ))}
-                            {handleEdit && handleDelete && (
+                            {(handleEdit || handleDelete) && (
                             <TableCell className='flex gap-2 items-center justify-center'>
-                                <button onClick={() => handleEdit(row.getValue('ID')) } className='bg-gray-300 p-2 grid content-center cursor-pointer text-gray-800 rounded-lg'>
+                                {handleEdit && (
+                                <button onClick={() => handleEdit(row.getValue('ID')) } className='bg-gray-100 p-2 grid content-center cursor-pointer text-gray-800 rounded-lg'>
                                     <FiEye size={16} />
                                 </button>
-                                <button onClick={() => handleDelete(row.getValue('ID'))} className='bg-red-400 p-2 grid content-center cursor-pointer text-gray-800 rounded-lg'>
+                                )}
+                                {handleDelete && (
+                                <button onClick={() => handleDelete(row.getValue('ID'))} className='bg-red-700 p-2 grid content-center cursor-pointer text-white rounded-lg'>
                                     <FiTrash2 size={16} />
                                 </button>
+                                )}
                             </TableCell>
                             )}
                         </TableRow>

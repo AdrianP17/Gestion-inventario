@@ -34,7 +34,7 @@ function Kardex() {
   return (
     <main className="px-10 pt-5">
     <div className="mb-5">
-      <h1 className="subtitle">Inventario</h1>
+      <h1 className="subtitle">Kardex</h1>
     </div>
     <div className="container-custom">
       <h2 className="title">Registro de Movimientos</h2>
