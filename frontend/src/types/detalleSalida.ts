@@ -1,7 +1,8 @@
 export interface DetalleSalida {
-    productoId: number;
-    nombreProducto: string;
-    Cantidad: number;
-    precioUnitario: number;
-    Subtotal: number;
+    productoid: number;
+    nombreproducto: string;
+    cantidad: number;
+    preciounitario: number;
+    subtotal: number;
 }
+
