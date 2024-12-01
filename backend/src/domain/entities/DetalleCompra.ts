@@ -1,11 +1,9 @@
 export class DetalleCompra {
     constructor(
-      public id: number,
-      public ordenCompraId: number,
-      public productoId: number,
+      public nombreProducto: string,
       public cantidad: number,
       public precioUnitario: number,
-      public subtotal: number
+      public subtotal: number,
+      public productoId?: number
     ) {}
   }
-  

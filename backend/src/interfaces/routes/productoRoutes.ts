@@ -5,13 +5,20 @@ import { ObtenerTodosProductosUseCase } from '../../application/use-cases/produc
 import { ObtenerProductoPorIdUseCase } from '../../application/use-cases/producto/ObtenerProductoPorIdUseCase';
 import { ActualizarProductoUseCase } from '../../application/use-cases/producto/ActualizarProductoUseCase';
 import { EliminarProductoUseCase } from '../../application/use-cases/producto/EliminarProductoUseCase';
+YONI
 import { ActualizarStockProductoUseCase } from '../../application/use-cases/producto/ActualizarStockProductoUseCase';
 import { CambiarEstadoProductoUseCase } from '../../application/use-cases/producto/CambiarEstadoProductoUseCase';
+YONI
+import { ObtenerListaProductosUseCase } from '../../application/use-cases/producto/ObtenerListaProductosUseCase';
+import { ObtenerInventarioProductosUseCase } from '../../application/use-cases/producto/ObtenerInventarioProductosUseCase';
+import { ObtenerProductosMaximosUseCase } from '../../application/use-cases/producto/ObtenerProductosMaximos';
+import { ObtenerProductosMinimosUseCase } from '../../application/use-cases/producto/ObtenerProductosMinimosUseCase';
 import { MySQLProductoRepository } from '../../infrastructure/database/mysql/MySQLProductoRepository';
-
+import { PostgreSQLProductoRepository } from '../../infrastructure/database/postgresql/PostgreSQLProductoRepository';
 const productoRouter = Router();
 
 const productoRepository = new MySQLProductoRepository();
+YONI
 const crearProductoUseCase = new CrearProductoUseCase(productoRepository);
 const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(productoRepository);
 const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(productoRepository);
@@ -20,6 +27,18 @@ const eliminarProductoUseCase = new EliminarProductoUseCase(productoRepository);
 // Instanciar los nuevos casos de uso
 const actualizarStockProductoUseCase = new ActualizarStockProductoUseCase(productoRepository);
 const cambiarEstadoProductoUseCase = new CambiarEstadoProductoUseCase(productoRepository);
+YONI
+const postgresqlproductoRepository = new PostgreSQLProductoRepository();
+
+const crearProductoUseCase = new CrearProductoUseCase(postgresqlproductoRepository);
+const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(postgresqlproductoRepository);
+const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(postgresqlproductoRepository);
+const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(postgresqlproductoRepository);
+const actualizarProductoUseCase = new ActualizarProductoUseCase(postgresqlproductoRepository);
+const eliminarProductoUseCase = new EliminarProductoUseCase(postgresqlproductoRepository);
+const obtenerInventarioProductosUseCase = new ObtenerInventarioProductosUseCase(postgresqlproductoRepository);
+const obtenerProductosMaximosUseCase = new ObtenerProductosMaximosUseCase(postgresqlproductoRepository);
+const obtenerProductosMinimosUseCase = new ObtenerProductosMinimosUseCase(postgresqlproductoRepository);
 
 const productoController = new ProductoController(
   crearProductoUseCase,
@@ -27,20 +46,31 @@ const productoController = new ProductoController(
   obtenerProductoPorIdUseCase,
   actualizarProductoUseCase,
   eliminarProductoUseCase,
+  YONI
   // Agregar los nuevos casos de uso
   actualizarStockProductoUseCase,
   cambiarEstadoProductoUseCase
+  YONI
+  obtenerListaProductosUseCase,
+  obtenerInventarioProductosUseCase,
+  obtenerProductosMaximosUseCase,
+  obtenerProductosMinimosUseCase
 );
 
 productoRouter.post('/', (req, res) => {
   console.log(req.body); 
   productoController.crear(req, res)});
 productoRouter.get('/', (req, res) => productoController.obtenerTodosProductos(req, res));
-productoRouter.get('/:id', (req, res) => productoController.obtenerPorId(req, res));
+productoRouter.get('/inventario', (req, res) => productoController.obtenerInventario(req, res));
+productoRouter.get('/info/:id', (req, res) => productoController.obtenerPorId(req, res));
 productoRouter.put('/:id', (req, res) => productoController.actualizar(req, res));
 productoRouter.delete('/:id', (req, res) => productoController.eliminar(req, res));
+YONI
 // Agregar las nuevas rutas
 productoRouter.put('/stock/:id', (req, res) => productoController.actualizarStock(req, res));
 productoRouter.put('/estado/:id', (req, res) => productoController.cambiarEstado(req, res));
-
+YONI
+productoRouter.get('/lista', (req, res) => productoController.obtenerlista(req, res));
+productoRouter.get('/maximos', (req, res) => productoController.obtenerMaximos(req, res));
+productoRouter.get('/minimos', (req, res) => productoController.obtenerMinimos(req, res));
 export default productoRouter;

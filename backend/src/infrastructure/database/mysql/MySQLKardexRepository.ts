@@ -1,12 +1,16 @@
 import { IKardexRepository } from "../../../domain/repositories/IKardexRepository";
 import { Kardex } from "../../../domain/entities/Kardex";
-
+import { db } from "./connection";
 
 export class MySQLKardexRepository implements IKardexRepository{
 
-    async obtenerMovimientosPorProducto(productoId: number): Promise<Kardex[]> {
-        //TODO
-        return []
+    async obtenerMovimientos(): Promise<Kardex[]> {
+        try {
+            const [results] = await db.query('SELECT * FROM Kardex');
+            return results as Kardex[];
+        } catch (error: any) {
+            throw new Error('Error al obtener los movimientos de Kardex: ' + error.message);
+        }
     }
 
     async registrarMovimiento(kardex: Kardex): Promise<void> {

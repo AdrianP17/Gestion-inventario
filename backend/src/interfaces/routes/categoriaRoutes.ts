@@ -6,15 +6,18 @@ import { ObtenerCategoriaPorIdUseCase } from '../../application/use-cases/catego
 import { ActualizarCategoriaUseCase } from '../../application/use-cases/categoria/ActualizarCategoriaUseCase';
 import { EliminarCategoriaUseCase } from '../../application/use-cases/categoria/EliminarCategoriaUseCase';
 import { MySQLCategoriaRepository } from '../../infrastructure/database/mysql/MySQLCategoriaRepository';
+import { PostgreSQLCategoriaRepository } from '../../infrastructure/database/postgresql/PostgreSQLCategoriaRepository';
 
 const categoriaRouter = Router();
 
-const categoriaRepository = new MySQLCategoriaRepository();
-const crearCategoriaUseCase = new CrearCategoriaUseCase(categoriaRepository);
-const obtenerTodasCategoriasUseCase = new ObtenerTodasCategoriasUseCase(categoriaRepository);
-const obtenerCategoriaPorIdUseCase = new ObtenerCategoriaPorIdUseCase(categoriaRepository);
-const actualizarCategoriaUseCase = new ActualizarCategoriaUseCase(categoriaRepository);
-const eliminarCategoriaUseCase = new EliminarCategoriaUseCase(categoriaRepository);
+const MySQLcategoriaRepository = new MySQLCategoriaRepository();
+const PostgreSQLcategoriaRepository = new PostgreSQLCategoriaRepository();
+
+const crearCategoriaUseCase = new CrearCategoriaUseCase(PostgreSQLcategoriaRepository);
+const obtenerTodasCategoriasUseCase = new ObtenerTodasCategoriasUseCase(PostgreSQLcategoriaRepository);
+const obtenerCategoriaPorIdUseCase = new ObtenerCategoriaPorIdUseCase(PostgreSQLcategoriaRepository);
+const actualizarCategoriaUseCase = new ActualizarCategoriaUseCase(PostgreSQLcategoriaRepository);
+const eliminarCategoriaUseCase = new EliminarCategoriaUseCase(PostgreSQLcategoriaRepository);
 const categoriaController = new CategoriaController(
   crearCategoriaUseCase,
   obtenerTodasCategoriasUseCase,
@@ -23,9 +26,11 @@ const categoriaController = new CategoriaController(
   eliminarCategoriaUseCase
 );
 
-categoriaRouter.post('/', (req, res) => categoriaController.crear(req, res));
+categoriaRouter.post('/', (req, res) => {
+  console.log(req.body); 
+  categoriaController.crear(req, res)});
 categoriaRouter.get('/', (req, res) => categoriaController.obtenerTodasCategorias(req, res));
-categoriaRouter.get('/:id', (req, res) => categoriaController.obtenerCategoriaPorId(req, res));
+categoriaRouter.get('/:id', (req, res) => categoriaController.obtenerPorId(req, res));
 categoriaRouter.put('/:id', (req, res) => categoriaController.actualizar(req, res));
 categoriaRouter.delete('/:id', (req, res) => categoriaController.eliminar(req, res));
 
