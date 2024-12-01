@@ -1,12 +1,10 @@
 "use client"
 import { getOrdenesCompra, deleteOrdenCompra } from "@/lib/api";
-import OrderTable from "@/components/ordenes-compra/OrdenCompraTable";
 import { useRouter } from "next/navigation";
 import useOrdenesCompra from "@/hooks/useOrdenesCompra";
 import SimpleTable from "@/components/SimpleTable";
 import { formatearFecha } from "@/lib/utils";
-import { OrdenCompra } from "@/types/ordenCompra";
-
+import { Button } from "@/components/ui/button";
 function OrdenesCompraPage() {
   const router = useRouter();
   const { ordenesCompra, loading } = useOrdenesCompra();
@@ -62,7 +60,10 @@ function OrdenesCompraPage() {
         <h2 className="title">Tabla de Órdenes de Compra</h2>
         <div className="mx-auto max-w-screen-xl">
       <SimpleTable enableSearch={false}  data={ordenesCompra} columns={columns} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        <Button className="mt-5 text-lg py-7 px-6" onClick={() => router.push("/ordenes-compra/nuevo")}>Solicitar Orden de Compra</Button>
         </div>
+
+
       </div>
     </main>
      

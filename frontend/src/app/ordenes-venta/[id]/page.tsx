@@ -16,20 +16,20 @@ export default function OrdenVentaInfo() {
             <h1 className='text-2xl lg:text-4xl'>Detalle de la Orden de Salida de Inventario</h1>
             </div>
             <div className="flex gap-4 flex-wrap mb-8">
-                <div className="rounded-2xl bg-primary text-white p-6 flex flex-col items-center">
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 flex flex-col items-center">
                     <p className="text-4xl mb-4">{orden.ID}</p>
                     <span className='opacity-60'>ID de la Orden</span>
                 </div>
-                <div className="rounded-2xl bg-primary text-white p-6 px-10 flex flex-col items-center">
-                    <p className="text-4xl mb-4">{formatearFecha(orden.Fecha_Registro)}</p>
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 px-10 flex flex-col items-center">
+                    <p className="text-2xl mb-4">{formatearFecha(orden.Fecha_Registro)}</p>
                     <span className='opacity-50'>Fecha de Registro</span>
                 </div>
-                <div className="rounded-2xl bg-primary text-white p-6 px-10 flex flex-col items-center">
-                    <p className="text-4xl mb-4">{orden.Estado}</p>
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 px-10 flex flex-col items-center">
+                    <p className="text-2xl mb-4">{orden.Estado}</p>
                     <span className='opacity-50'>Estado</span>
                 </div>
-                <div className="rounded-2xl bg-primary text-white p-6 flex flex-col items-center">
-                    <p className="text-4xl mb-4">$ {orden.Total_Salida}</p>
+                <div className="rounded-2xl border-primary border-2 text-blue-950  p-6 flex flex-col items-center">
+                    <p className="text-2xl mb-4">$ {orden.Total_Salida}</p>
                     <span className='opacity-50'>Total</span>
                 </div>
             </div>
