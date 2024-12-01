@@ -123,12 +123,12 @@ const table = useReactTable({
                             {(handleEdit || handleDelete) && (
                             <TableCell className='flex gap-2 items-center justify-center'>
                                 {handleEdit && (
-                                <button onClick={() => handleEdit(row.getValue('ID')) } className='bg-gray-100 p-2 grid content-center cursor-pointer text-gray-800 rounded-lg'>
+                                <button onClick={() => handleEdit(row.getValue('id')) } className='bg-gray-100 p-2 grid content-center cursor-pointer text-gray-800 rounded-lg'>
                                     <FiEye size={16} />
                                 </button>
                                 )}
                                 {handleDelete && (
-                                <button onClick={() => handleDelete(row.getValue('ID'))} className='bg-red-700 p-2 grid content-center cursor-pointer text-white rounded-lg'>
+                                <button onClick={() => handleDelete(row.getValue('id'))} className='bg-red-700 p-2 grid content-center cursor-pointer text-white rounded-lg'>
                                     <FiTrash2 size={16} />
                                 </button>
                                 )}

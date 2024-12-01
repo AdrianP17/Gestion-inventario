@@ -4,8 +4,8 @@ import api from "@/lib/api";
 import { Producto } from "@/types/producto";
 
 export function useProductosAlerta() {
-    const [productosMinimos, setProductosMinimos] = useState<Pick<Producto, 'ID' | 'Nombre' | 'Stock_Actual'>[]>([]);
-    const [productosMaximos, setProductosMaximos] = useState<Pick<Producto, 'ID' | 'Nombre' | 'Stock_Actual'>[]>([]);
+    const [productosMinimos, setProductosMinimos] = useState<Pick<Producto, 'id' | 'nombre' | 'stock_actual'>[]>([]);
+    const [productosMaximos, setProductosMaximos] = useState<Pick<Producto, 'id' | 'nombre' | 'stock_actual'>[]>([]);
     const [loadingProductos, setLoadingProductos] = useState<boolean>(true);
 
     useEffect(() => {
