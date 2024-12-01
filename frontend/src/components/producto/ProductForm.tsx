@@ -9,8 +9,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import api from "@/lib/api";
-import { Producto } from "@/types/producto";
-import { set } from "react-hook-form";
 import useCategorias from "@/hooks/useCategorias";
 
  
