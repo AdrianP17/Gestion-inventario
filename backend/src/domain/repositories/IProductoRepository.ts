@@ -9,13 +9,13 @@ export interface IProductoRepository {
     eliminar(id: number): Promise<void>;
     obtenerInventario(): Promise<Producto[]>;
     obtenerPorCategoria(categoriaId: number): Promise<Producto[]>;
-    yoniiiiiiiii
+
+    //yoni
      // Métodos adicionales basados en los nuevos casos de uso
     actualizarStock(productoID: number, cantidad: number): Promise<void>; // Para ActualizarStockProductoUseCase
     cambiarEstado(productoID: number, estado: string): Promise<void>; // Para CambiarEstadoProductoUseCase
 
-
-    YONIIIIIIII
+    //ADRIAN
     obtenerProductosDebajoDelNivelMinimo(): Promise<Producto[]>;
     obtenerProductosArribaDelNivelMaximo(): Promise<Producto[]>;
 }

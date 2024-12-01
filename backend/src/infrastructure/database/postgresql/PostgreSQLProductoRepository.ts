@@ -78,6 +78,23 @@ export class PostgreSQLProductoRepository implements IProductoRepository {
             throw new Error('Error al obtener los productos por categoría: ' + error.message);
         }
     }
+    //YONI POSTGRESQL
+        async actualizarStock(productoID: number, cantidad: number): Promise<void> {
+        try {
+            await pool.query('UPDATE "Producto" SET "stock_Actual" = $1 WHERE "id" = $2', [cantidad, productoID]);
+        } catch (error: any) {
+            throw new Error('Error al actualizar el stock del producto: ' + error.message);
+        }
+    }
+
+    async cambiarEstado(productoID: number, estado: string): Promise<void> {
+        try {
+            await pool.query('UPDATE "Producto" SET "estado" = $1 WHERE "id" = $2', [estado, productoID]);
+        } catch (error: any) {
+            throw new Error('Error al cambiar el estado del producto: ' + error.message);
+        }
+    }
+    //
 
     async obtenerInventario(): Promise<Producto[]> {
         try {

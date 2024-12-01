@@ -81,7 +81,7 @@ export class MySQLProductoRepository implements IProductoRepository {
         }
         return []
     }
-    YONIIIIIII
+    //YONI
         async actualizarStock(productoID: number, cantidad: number): Promise<void> {
         try {
             await db.execute('UPDATE Producto SET stock_Actual = ? WHERE id = ?', [cantidad, productoID]);
@@ -95,7 +95,8 @@ export class MySQLProductoRepository implements IProductoRepository {
             await db.execute('UPDATE Producto SET estado = ? WHERE id = ?', [estado, productoID]);
         } catch (error: any) {
             throw new Error('Error al cambiar el estado del producto: ' + error.message);
-            YONIIIIIIII
+        }
+        //ADRIAN
 
     async obtenerInventario(): Promise<Producto[]> {
         try {

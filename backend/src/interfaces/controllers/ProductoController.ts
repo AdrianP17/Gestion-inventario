@@ -4,10 +4,10 @@ import { ObtenerTodosProductosUseCase } from '../../application/use-cases/produc
 import { ActualizarProductoUseCase } from '../../application/use-cases/producto/ActualizarProductoUseCase'
 import { EliminarProductoUseCase } from '../../application/use-cases/producto/EliminarProductoUseCase'
 import { ObtenerProductoPorIdUseCase } from '../../application/use-cases/producto/ObtenerProductoPorIdUseCase'
-YONI
+//YONI
 import { ActualizarStockProductoUseCase } from '../../application/use-cases/producto/ActualizarStockProductoUseCase';
 import { CambiarEstadoProductoUseCase } from '../../application/use-cases/producto/CambiarEstadoProductoUseCase';
-YONI
+//ADRIAN
 import { ObtenerListaProductosUseCase } from '../../application/use-cases/producto/ObtenerListaProductosUseCase'
 import { ObtenerInventarioProductosUseCase } from '../../application/use-cases/producto/ObtenerInventarioProductosUseCase'
 import { ObtenerProductosMaximosUseCase } from '../../application/use-cases/producto/ObtenerProductosMaximos'
@@ -20,7 +20,7 @@ export class ProductoController {
         private obtenerProductoPorIdUseCase: ObtenerProductoPorIdUseCase,
         private actualizarProductoUseCase: ActualizarProductoUseCase,
         private eliminarProductoUseCase: EliminarProductoUseCase,
-        YONI
+        //YONI
         // Agregar los nuevos casos de uso
         private actualizarStockProductoUseCase: ActualizarStockProductoUseCase,
         private cambiarEstadoProductoUseCase: CambiarEstadoProductoUseCase
@@ -28,7 +28,6 @@ export class ProductoController {
 
     async crear(req: Request, res: Response): Promise<void> {
         const { nombre, categoriaId, precio, descripcion, marca, modelo, nivelMaximo, nivelMinimo, stockActual, sku, estado } = req.body;
-        YONI
         private obtenerListaProductosUseCase: ObtenerListaProductosUseCase,
         private obtenerInventarioProductosUseCase: ObtenerInventarioProductosUseCase,
         private obtenerProductosMaximosUseCase: ObtenerProductosMaximosUseCase,
@@ -133,7 +132,7 @@ export class ProductoController {
             res.status(500).json({ message: 'Error al eliminar el producto: ' + error.message });
         }
     }
-    YONI
+//YONI
         // Método para actualizar el stock del producto
     async actualizarStock(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
@@ -158,7 +157,7 @@ export class ProductoController {
         }
     }
 }
-YONI
+//ADRIAN
 
     async obtenerInventario(req: Request, res: Response): Promise<void> {
         try {
