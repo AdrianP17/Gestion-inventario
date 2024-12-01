@@ -19,7 +19,7 @@ export class MySQLProductoRepository implements IProductoRepository {
                     producto.stock_actual,
                     producto.sku,
                     producto.estado,
-                Categoria.Nombre as nombrecategoria FROM producto JOIN categoria ON producto.CategoriaID = categoria.ID`);
+                Categoria.Nombre as nombrecategoria FROM producto LEFT JOIN categoria ON producto.CategoriaID = categoria.ID`);
             return results as Producto[]
           } catch (error: any) {
             throw new Error('Error al obtener los productos: ' + error.message);
