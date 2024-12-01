@@ -17,8 +17,8 @@ export class PostgreSQLSalidaInventarioRepository implements ISalidaInventarioRe
         try {
             const query = `
                 SELECT 
-                    osi.ID,
-                    osi.Fecha_Registro,
+                    osi.id,
+                    osi.fecha_registro,
                     osi.Motivo,
                     osi.Area,
                     osi.Estado,
@@ -34,17 +34,26 @@ export class PostgreSQLSalidaInventarioRepository implements ISalidaInventarioRe
                 return null;
             }
             const salidaInventario: SalidaInventario = rows[0];
-            const detallesSalida = await this.obtenerDetallesPorSalida(salidaInventario.ID);
-            return new SalidaInventario(
-                salidaInventario.ID,
-                salidaInventario.Fecha_Registro,
-                salidaInventario.Motivo,
-                salidaInventario.Area,
-                salidaInventario.Estado,
-                salidaInventario.Total_Salida,
-                salidaInventario.Observaciones,
-                detallesSalida 
-            );
+
+            const { rows: detallesSalida } = await db.query(`
+                SELECT 
+                   ds.productoid,
+                    p.Nombre AS nombreproducto,
+                    ds.cantidad,
+                    ds.precio_unitario AS preciounitario,
+                    ds.subtotal
+                FROM 
+                    detalle_salida ds
+                    JOIN producto p ON ds.productoid = p.ID
+                WHERE 
+                    ds.Salida_InventarioID = $1;
+            `, [id]);
+
+            // const detallesSalida = await this.obtenerDetallesPorSalida(salidaInventario.ID);
+            return {
+                ...salidaInventario,
+                detallesSalida
+            }
         } catch (error: any) {
             throw new Error(error.message); 
         }
@@ -54,8 +63,8 @@ export class PostgreSQLSalidaInventarioRepository implements ISalidaInventarioRe
         try {
             const query = `
                 SELECT 
-                    ds.ProductoID AS productoId,
-                    p.Nombre AS nombreProducto,
+                    ds.ProductoID,
+                    p.Nombre AS nombreproducto,
                     ds.Cantidad,
                     ds.Precio_Unitario AS precioUnitario,
                     ds.Subtotal
