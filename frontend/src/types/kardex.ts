@@ -1,7 +1,7 @@
 export interface Kardex {
     id: number;
-    productoId: number;
-    fechaMovimiento: string; // Fecha en formato ISO
-    tipoMovimiento: 'Entrada' | 'Salida';
+    productoid: number;
+    fechamovimiento: string; // Fecha en formato ISO
+    tipomovimiento: 'Entrada' | 'Salida';
     cantidad: number;
 }

@@ -1,7 +1,8 @@
 export interface DetalleCompra {
-    ProductoId: number;
-    NombreProducto: string;
-    Cantidad: number;
-    Precio_Unitario: number;
-    Subtotal: number;
+    productoid: number;
+    nombreproducto: string;
+    cantidad: number;
+    precio_unitario: number;
+    subtotal: number;
 }
+

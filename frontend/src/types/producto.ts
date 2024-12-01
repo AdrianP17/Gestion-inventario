@@ -1,13 +1,13 @@
 export interface Producto {
-    ID: number;
-    Nombre: string;
-    CategoriaId: number;
-    Precio: number;
-    Descripcion?: string;
-    Marca?: string;
-    Modelo?: string;
-    Nivel_Maximo: number;
-    Nivel_Minimo: number;
-    Stock_Actual?: number;
-    NombreCategoria?: string;
+    id: number;
+    nombre: string;
+    categoriaid: number;
+    precio: number;
+    descripcion?: string;
+    marca?: string;
+    modelo?: string;
+    nivel_maximo: number;
+    nivel_minimo: number;
+    stock_actual?: number;
+    nombre_categoria?: string;
 }
