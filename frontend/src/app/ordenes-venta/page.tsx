@@ -49,11 +49,6 @@ function OrdenesVenta() {
               handleEdit={(id: number) => {
                 router.push(`/ordenes-venta/${id}`);
               }}
-              handleDelete={(id: number) => {
-                api.delete(`/ordenes-venta/${id}`).then(() => {
-                  window.location.reload();
-                })
-              }}
             />)}
 
         </div>
