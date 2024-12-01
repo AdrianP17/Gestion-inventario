@@ -1,11 +1,12 @@
 export class DetalleSalida {
-  constructor(
-    public id: number,
-    public salidaInventarioId: number,
-    public productoId: number,
-    public cantidad: number,
-    public precioUnitario: number,
-    public subtotal: number,
-    public estado?: string
-  ) {}
-}
+    constructor(
+      public ID: number,
+      public Salida_InventarioID: number,
+      public ProductoID: number,
+      public Cantidad: number,
+      public Precio_Unitario: number,
+      public Subtotal: number,
+      public Estado: string
+    ) {}
+  }
+  

@@ -5,10 +5,11 @@ import proveedorRouter from './interfaces/routes/proveedorRoutes';
 import recepcionRoutes from './interfaces/routes/recepcionCompraRoutes';
 import bodyParser from 'body-parser';
 import categoriaRouter from './interfaces/routes/categoriaRoutes';
-import salidaInventarioRouter from './interfaces/routes/salidaInventarioRoutes';
+import ordenSalidaInventarioRouter from './interfaces/routes/ordenSalidaInventarioRoutes';
+import detalleSalidaRouter from './interfaces/routes/detalleSalidaRoutes';
 import kardexRouter from './interfaces/routes/kardexRoutes';
 const app = express();
-const port = 3001;
+const port = 3000;
 // Middleware para parsear JSON
 app.use(bodyParser.json());
 
@@ -19,7 +20,8 @@ app.use('/api/proveedores', proveedorRouter);
 app.use('/api/recepciones', recepcionRoutes);
 app.use('/api/categorias', categoriaRouter);
 app.use('/api/kardex', kardexRouter);
-app.use('/api/salidas', salidaInventarioRouter);
+app.use('/api/salidas', ordenSalidaInventarioRouter);
+app.use('/api/detallessalidas', detalleSalidaRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript with Express!');
