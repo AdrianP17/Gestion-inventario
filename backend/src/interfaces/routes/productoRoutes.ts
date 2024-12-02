@@ -5,10 +5,8 @@ import { ObtenerTodosProductosUseCase } from '../../application/use-cases/produc
 import { ObtenerProductoPorIdUseCase } from '../../application/use-cases/producto/ObtenerProductoPorIdUseCase';
 import { ActualizarProductoUseCase } from '../../application/use-cases/producto/ActualizarProductoUseCase';
 import { EliminarProductoUseCase } from '../../application/use-cases/producto/EliminarProductoUseCase';
-//YONI
 import { ActualizarStockProductoUseCase } from '../../application/use-cases/producto/ActualizarStockProductoUseCase';
 import { CambiarEstadoProductoUseCase } from '../../application/use-cases/producto/CambiarEstadoProductoUseCase';
-//ADRIAN
 import { ObtenerListaProductosUseCase } from '../../application/use-cases/producto/ObtenerListaProductosUseCase';
 import { ObtenerInventarioProductosUseCase } from '../../application/use-cases/producto/ObtenerInventarioProductosUseCase';
 import { ObtenerProductosMaximosUseCase } from '../../application/use-cases/producto/ObtenerProductosMaximos';
