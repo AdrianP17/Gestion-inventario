@@ -67,26 +67,31 @@ export class OrdenSalidaInventarioController {
   }
 
   // Actualizar orden de salida
-  async actualizarOrdenSalida(req: Request, res: Response) {
-    const ID = parseInt(req.params.ID, 10);
-    const data = req.body; // Los datos de actualización vienen en el cuerpo
-    if (!ID) {
-      res.status(404).json({ message: 'Orden de Salida no encontrado' });
-      return;
-    }
+async actualizarOrdenSalida(req: Request, res: Response) {
+  const ID = parseInt(req.params.ID, 10); // Extraemos el ID de la URL
+  const data = req.body; // Los datos de actualización vienen en el cuerpo
 
-    try {
-      await this.actualizarOrdenSalidaInventarioUseCase.execute(data);
-      res.status(200).json({ message: 'Orden de salida de inventario actualizada correctamente.' });
-    } catch (error: unknown) {
-      // Verificación explícita de que 'error' tiene la propiedad 'message'
-      if (error instanceof Error) {
-        res.status(400).json({ message: error.message });
-      } else {
-        res.status(500).json({ message: 'Error inesperado al actualizar la orden de salida.' });
-      }
+  if (!ID) {
+    res.status(404).json({ message: 'Orden de Salida no encontrada' });
+    return;
+  }
+
+  // Aseguramos que el ID esté dentro de los datos a actualizar
+  const dataWithId = { ...data, ID };
+
+  try {
+    // Llamamos al caso de uso pasando los datos con el ID incluido
+    await this.actualizarOrdenSalidaInventarioUseCase.execute(dataWithId);
+    res.status(200).json({ message: 'Orden de salida de inventario actualizada correctamente.' });
+  } catch (error: unknown) {
+    // Verificación explícita de que 'error' tiene la propiedad 'message'
+    if (error instanceof Error) {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: 'Error inesperado al actualizar la orden de salida.' });
     }
   }
+}
 
   // Eliminar orden de salida
   async eliminarOrdenSalida(req: Request, res: Response) {
