@@ -11,14 +11,18 @@ import { PostgreSQLProveedorRepository } from '../../infrastructure/database/pos
 import { PostgreSQLOrdenCompraRepository } from '../../infrastructure/database/postgresql/PostgreSQLOrdenCompraRepository';
 const ordenCompraRouter = Router();
 //MYSQL
-const mysqlordenCompraRepository = new MySQLOrdenCompraRepository();
-const mysqlproveedorRepository = new MySQLProveedorRepository();
+const ordenCompraRepository = new MySQLOrdenCompraRepository();
+const proveedorRepository = new MySQLProveedorRepository();
 
-const crearOrdenCompraUseCase2 = new CrearOrdenCompraUseCase(mysqlordenCompraRepository);
-const obtenerTodasOrdenesCompraUseCase2 = new ObtenerTodasOrdenesCompraUseCase(mysqlordenCompraRepository);
-const obtenerOrdenCompraPorIdUseCase2 = new ObtenerOrdenCompraPorIdUseCase(mysqlordenCompraRepository);
-const actualizarOrdenCompraUseCase2 = new ActualizarOrdenCompraUseCase(mysqlordenCompraRepository, mysqlproveedorRepository);
-const eliminarOrdenCompraUseCase2 = new EliminarOrdenCompraUseCase(mysqlordenCompraRepository);
+//POSTGRESQL
+// const ordenCompraRepository = new PostgreSQLOrdenCompraRepository();
+// const proveedorRepository = new PostgreSQLProveedorRepository();
+
+const crearOrdenCompraUseCase2 = new CrearOrdenCompraUseCase(ordenCompraRepository);
+const obtenerTodasOrdenesCompraUseCase2 = new ObtenerTodasOrdenesCompraUseCase(ordenCompraRepository);
+const obtenerOrdenCompraPorIdUseCase2 = new ObtenerOrdenCompraPorIdUseCase(ordenCompraRepository);
+const actualizarOrdenCompraUseCase2 = new ActualizarOrdenCompraUseCase(ordenCompraRepository, proveedorRepository);
+const eliminarOrdenCompraUseCase2 = new EliminarOrdenCompraUseCase(ordenCompraRepository);
 const ordenCompraController = new OrdenCompraController(
   crearOrdenCompraUseCase2,
   actualizarOrdenCompraUseCase2,
@@ -28,22 +32,8 @@ const ordenCompraController = new OrdenCompraController(
 );
 
 
-//POSTGRESQL
-// const postgresqlordenCompraRepository = new PostgreSQLOrdenCompraRepository();
-// const postgresqlproveedorRepository = new PostgreSQLProveedorRepository();
 
-// const crearOrdenCompraUseCase = new CrearOrdenCompraUseCase(postgresqlordenCompraRepository);
-// const obtenerTodasOrdenesCompraUseCase = new ObtenerTodasOrdenesCompraUseCase(postgresqlordenCompraRepository);
-// const obtenerOrdenCompraPorIdUseCase = new ObtenerOrdenCompraPorIdUseCase(postgresqlordenCompraRepository);
-// const actualizarOrdenCompraUseCase = new ActualizarOrdenCompraUseCase(postgresqlordenCompraRepository, postgresqlproveedorRepository);
-// const eliminarOrdenCompraUseCase = new EliminarOrdenCompraUseCase(postgresqlordenCompraRepository);
-// const ordenCompraController = new OrdenCompraController(
-//   crearOrdenCompraUseCase,
-//   actualizarOrdenCompraUseCase,
-//   obtenerTodasOrdenesCompraUseCase,
-//   eliminarOrdenCompraUseCase,
-//   obtenerOrdenCompraPorIdUseCase
-// );
+
 
 ordenCompraRouter.post('/', (req, res) => ordenCompraController.crear(req, res));
 ordenCompraRouter.get('/', (req, res) => ordenCompraController.obtenerTodos(req, res));

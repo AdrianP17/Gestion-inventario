@@ -6,23 +6,22 @@ import { MySQLKardexRepository } from '../../infrastructure/database/mysql/MySQL
 import { PostgreSQLKardexRepository } from '../../infrastructure/database/postgresql/PostgreSQLKardexRepository';
 
 const kardexRouter = Router();
+
+//POSTGRESQL
+// const kardexRepository = new PostgreSQLKardexRepository();
+
 //MYSQL
-const MySQLkardexRepository = new MySQLKardexRepository();
-const registrarMovimientoKardexUseCase = new RegistrarMovimientoKardexUseCase(MySQLkardexRepository);
-const obtenerMovimientosUseCase = new ObtenerMovimientosUseCase(MySQLkardexRepository);
+const kardexRepository = new MySQLKardexRepository();
+
+const registrarMovimientoKardexUseCase = new RegistrarMovimientoKardexUseCase(kardexRepository);
+const obtenerMovimientosUseCase = new ObtenerMovimientosUseCase(kardexRepository);
 const kardexController = new KardexController(
   registrarMovimientoKardexUseCase,
   obtenerMovimientosUseCase
 );
 
-//POSTGRESQL
-// const postgresqlKardexRepository = new PostgreSQLKardexRepository();
-// const registrarMovimientoKardexUseCase = new RegistrarMovimientoKardexUseCase(postgresqlKardexRepository);
-// const obtenerMovimientosUseCase = new ObtenerMovimientosUseCase(postgresqlKardexRepository);
-// const kardexController = new KardexController(
-//   registrarMovimientoKardexUseCase,
-//   obtenerMovimientosUseCase
-//   );
+
+
 
 kardexRouter.post('/', (req, res) => kardexController.registrarMovimiento(req, res));
 kardexRouter.get('/', (req, res) => kardexController.obtenerMovimientos(req, res));

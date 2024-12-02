@@ -10,25 +10,13 @@ import { PostgreSQLCategoriaRepository } from '../../infrastructure/database/pos
 
 const categoriaRouter = Router();
 
+// MYSQL
 const MySQLcategoriaRepository = new MySQLCategoriaRepository();
+
+// POSTGRESQL
 const PostgreSQLcategoriaRepository = new PostgreSQLCategoriaRepository();
 
 
-// POSTGRESQL
-// const crearCategoriaUseCase = new CrearCategoriaUseCase(PostgreSQLcategoriaRepository);
-// const obtenerTodasCategoriasUseCase = new ObtenerTodasCategoriasUseCase(PostgreSQLcategoriaRepository);
-// const obtenerCategoriaPorIdUseCase = new ObtenerCategoriaPorIdUseCase(PostgreSQLcategoriaRepository);
-// const actualizarCategoriaUseCase = new ActualizarCategoriaUseCase(PostgreSQLcategoriaRepository);
-// const eliminarCategoriaUseCase = new EliminarCategoriaUseCase(PostgreSQLcategoriaRepository);
-// const categoriaController = new CategoriaController(
-//   crearCategoriaUseCase,
-//   obtenerTodasCategoriasUseCase,
-//   obtenerCategoriaPorIdUseCase,
-//   actualizarCategoriaUseCase,
-//   eliminarCategoriaUseCase
-// );
-
-// MYSQL
 const crearCategoriaUseCase = new CrearCategoriaUseCase(MySQLcategoriaRepository);
 const obtenerTodasCategoriasUseCase = new ObtenerTodasCategoriasUseCase(MySQLcategoriaRepository);
 const obtenerCategoriaPorIdUseCase = new ObtenerCategoriaPorIdUseCase(MySQLcategoriaRepository);

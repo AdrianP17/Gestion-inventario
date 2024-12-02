@@ -10,7 +10,6 @@ const MySQLdetalleCompraRepository = new MySQLDetalleCompraRepository();
 const PostgreSQLdetalleCompraRepository = new PostgreSQLDetalleCompraRepository();
 
 const detalleCompraController = new DetalleCompraController(
-
 );
 
 // detalleCompraRouter.post('/', (req, res) => detalleCompraController.crear(req, res));
