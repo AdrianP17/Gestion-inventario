@@ -17,10 +17,10 @@ const productoRouter = Router();
 
 
 //POSTGRESQL
-// const productoRepository = new PostgreSQLProductoRepository();
+const productoRepository = new PostgreSQLProductoRepository();
 
 //MYSQL
-const productoRepository = new MySQLProductoRepository();
+// const productoRepository = new MySQLProductoRepository();
 
 
 const actualizarStockProductoUseCase = new ActualizarStockProductoUseCase(productoRepository);
