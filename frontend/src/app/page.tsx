@@ -1,8 +1,6 @@
 "use client";
-import Image from "next/image";
 import SimpleTable from "@/components/SimpleTable";
 import { useRouter } from "next/navigation";
-import { formatearFecha } from "@/lib/utils";
 import { useInventario } from "@/hooks/useInventario";
 import { useKardex } from "@/hooks/useKardex";
 import { useProductosAlerta } from "@/hooks/useProductosAlerta";
@@ -13,9 +11,7 @@ import ListaProductos from "@/components/producto/ListaProductos";
 
 export default function Home() {
   const { inventario, loading } = useInventario();
-  const kardex = useKardex();
   const {productosMaximos, productosMinimos, loadingProductos} = useProductosAlerta();
-  const router = useRouter();
   const columnsInventario = [
     {
       header: 'ID',

@@ -11,12 +11,12 @@ import { PostgreSQLProveedorRepository } from '../../infrastructure/database/pos
 import { PostgreSQLOrdenCompraRepository } from '../../infrastructure/database/postgresql/PostgreSQLOrdenCompraRepository';
 const ordenCompraRouter = Router();
 //MYSQL
-const ordenCompraRepository = new MySQLOrdenCompraRepository();
-const proveedorRepository = new MySQLProveedorRepository();
+// const ordenCompraRepository = new MySQLOrdenCompraRepository();
+// const proveedorRepository = new MySQLProveedorRepository();
 
 //POSTGRESQL
-// const ordenCompraRepository = new PostgreSQLOrdenCompraRepository();
-// const proveedorRepository = new PostgreSQLProveedorRepository();
+const ordenCompraRepository = new PostgreSQLOrdenCompraRepository();
+const proveedorRepository = new PostgreSQLProveedorRepository();
 
 const crearOrdenCompraUseCase2 = new CrearOrdenCompraUseCase(ordenCompraRepository);
 const obtenerTodasOrdenesCompraUseCase2 = new ObtenerTodasOrdenesCompraUseCase(ordenCompraRepository);
