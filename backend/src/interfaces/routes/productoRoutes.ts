@@ -19,20 +19,7 @@ const productoRouter = Router();
 
 
 //POSTGRESQL
-
-
-const postgresqlproductoRepository = new PostgreSQLProductoRepository();
-
-// const crearProductoUseCase = new CrearProductoUseCase(postgresqlproductoRepository);
-// const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(postgresqlproductoRepository);
-// const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(postgresqlproductoRepository);
-// const obtenerProductoPorIdUseCase = new ObtenerProductoPorIdUseCase(postgresqlproductoRepository);
-// const actualizarProductoUseCase = new ActualizarProductoUseCase(postgresqlproductoRepository);
-// const eliminarProductoUseCase = new EliminarProductoUseCase(postgresqlproductoRepository);
-// const obtenerInventarioProductosUseCase = new ObtenerInventarioProductosUseCase(postgresqlproductoRepository);
-// const obtenerProductosMaximosUseCase = new ObtenerProductosMaximosUseCase(postgresqlproductoRepository);
-// const obtenerProductosMinimosUseCase = new ObtenerProductosMinimosUseCase(postgresqlproductoRepository);
-
+// const productoRepository = new PostgreSQLProductoRepository();
 
 //MYSQL
 const productoRepository = new MySQLProductoRepository();
@@ -40,7 +27,6 @@ const productoRepository = new MySQLProductoRepository();
 
 const actualizarStockProductoUseCase = new ActualizarStockProductoUseCase(productoRepository);
 const cambiarEstadoProductoUseCase = new CambiarEstadoProductoUseCase(productoRepository);
-
 const crearProductoUseCase = new CrearProductoUseCase(productoRepository);
 const obtenerListaProductosUseCase = new ObtenerListaProductosUseCase(productoRepository);
 const obtenerTodosProductosUseCase = new ObtenerTodosProductosUseCase(productoRepository);
