@@ -3,12 +3,12 @@
 import { Pool } from 'pg';
 
 export const db = new Pool({
-  host: 'localhost', // Cambia según la configuración de tu servidor PostgreSQL
+  host: 'localhost', 
   user: 'postgres',
-  password: '1234', // Cambia según tus credenciales
+  password: '1234',
   database: 'bbdd_inventario',
-  port: 5432, // Puerto por defecto de PostgreSQL
-  max: 10, // Número máximo de conexiones en el pool
-  idleTimeoutMillis: 30000, // Tiempo de espera antes de cerrar una conexión inactiva
-  connectionTimeoutMillis: 2000, // Tiempo de espera para establecer una nueva conexión
+  port: 5432, 
+  max: 10, 
+  idleTimeoutMillis: 30000, 
+  connectionTimeoutMillis: 2000, 
 });
