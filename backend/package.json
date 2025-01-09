@@ -15,6 +15,7 @@
     "@types/node": "^22.7.4",
     "@types/pg": "^8.11.10",
     "backend": "file:",
+    "dotenv": "^16.4.7",
     "express": "^4.21.0",
     "mysql2": "^3.11.3",
     "pg": "^8.13.1",
