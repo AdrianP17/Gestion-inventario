@@ -1,4 +1,4 @@
-# Proyecto de curso - Base de Datos 1
+# Sistema de Gestión de Inventario
 Integrantes:
 - Palacios Aguilar, Adrian Alessandro
 - Espinoza Aponte, Wilson Fabrizzio
