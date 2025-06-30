@@ -8,7 +8,14 @@ import categoriaRouter from './interfaces/routes/categoriaRoutes';
 import salidaInventarioRouter from './interfaces/routes/salidaInventarioRoutes';
 import kardexRouter from './interfaces/routes/kardexRoutes';
 import { db } from './infrastructure/database/postgresql/connection';
+
 const app = express();
+const cors = require('cors');
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // Para compatibilidad con navegadores antiguos
+};
+app.use(cors(corsOptions));
 const port = 3001;
 // Middleware para parsear JSON
 app.use(bodyParser.json());
