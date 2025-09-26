@@ -22,7 +22,12 @@ const proveedorController = new ProveedorController(
   obtenerListaProveedores
 );
 
-proveedorRouter.post('/', (req, res) => proveedorController.crear(req, res));
-proveedorRouter.get('/lista', (req, res) => proveedorController.obtenerLista(req, res));
+proveedorRouter.post('/', (req, res) => {
+  console.log(req.body); 
+  proveedorController.crear(req, res)});
+proveedorRouter.get('/', (req, res) => proveedorController.obtenerTodosProveedores(req, res));
+proveedorRouter.get('/:id', (req, res) => proveedorController.obtenerPorId(req, res));
+proveedorRouter.put('/:id', (req, res) => proveedorController.actualizar(req, res));
+proveedorRouter.delete('/:id', (req, res) => proveedorController.eliminar(req, res));
 
 export default proveedorRouter;
